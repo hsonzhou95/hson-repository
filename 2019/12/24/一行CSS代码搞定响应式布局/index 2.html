@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://yoursite.com').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.5.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="一行CSS代码搞定响应式布局在这篇文章中，我将教你如何使用 CSS Grid 来创建一个超酷的图像网格图，它将根据屏幕的宽度来改变列的数量。最精彩的地方在于：所有的响应特性被添加到了一行 css 代码中。这意味着我们不必将 HTML 与丑陋的类名(如col-sm-4, col-md-8)混杂在一起，也不必为每个屏幕创建媒体查询。">
+<meta name="keywords" content="响应式,样式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一行CSS代码搞定响应式布局">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;24&#x2F;%E4%B8%80%E8%A1%8CCSS%E4%BB%A3%E7%A0%81%E6%90%9E%E5%AE%9A%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80&#x2F;index.html">
+<meta property="og:site_name" content="等风来。">
+<meta property="og:description" content="一行CSS代码搞定响应式布局在这篇文章中，我将教你如何使用 CSS Grid 来创建一个超酷的图像网格图，它将根据屏幕的宽度来改变列的数量。最精彩的地方在于：所有的响应特性被添加到了一行 css 代码中。这意味着我们不必将 HTML 与丑陋的类名(如col-sm-4, col-md-8)混杂在一起，也不必为每个屏幕创建媒体查询。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;hsonzhou95&#x2F;blogImg&#x2F;master&#x2F;responseType&#x2F;initCss1.png?token=AMCTPY2FVPFKQUKNA4QKILS57HAYS">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;hsonzhou95&#x2F;blogImg&#x2F;master&#x2F;responseType&#x2F;initCss2.png?token=AMCTPYYBWEAU4YFLDSAVXGC57HAFC">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;hsonzhou95&#x2F;blogImg&#x2F;master&#x2F;responseType&#x2F;initCss4.png?token=AMCTPY6M4IIU2XMAJL5H4T257HAL6">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;hsonzhou95&#x2F;blogImg&#x2F;master&#x2F;responseType&#x2F;initCss5.png?token=AMCTPY6WRDICC4GA4N4XWTK57HAOG">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;hsonzhou95&#x2F;blogImg&#x2F;master&#x2F;responseType&#x2F;initCss6.png?token=AMCTPY33OBW6CTDFAT555AC57HAP2">
+<meta property="og:updated_time" content="2019-12-29T06:05:38.391Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;hsonzhou95&#x2F;blogImg&#x2F;master&#x2F;responseType&#x2F;initCss1.png?token=AMCTPY2FVPFKQUKNA4QKILS57HAYS">
+
+<link rel="canonical" href="http://yoursite.com/2019/12/24/%E4%B8%80%E8%A1%8CCSS%E4%BB%A3%E7%A0%81%E6%90%9E%E5%AE%9A%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>一行CSS代码搞定响应式布局 | 等风来。</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="等风来。" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">等风来。</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">成为一名出色的前端工程师</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/24/%E4%B8%80%E8%A1%8CCSS%E4%BB%A3%E7%A0%81%E6%90%9E%E5%AE%9A%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/zhouavtor.jpeg">
+      <meta itemprop="name" content="Hson zhou">
+      <meta itemprop="description" content="Try to be a better self">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="等风来。">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          一行CSS代码搞定响应式布局
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-12-24 13:42:56" itemprop="dateCreated datePublished" datetime="2019-12-24T13:42:56+08:00">2019-12-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-12-29 14:05:38" itemprop="dateModified" datetime="2019-12-29T14:05:38+08:00">2019-12-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/HTML5%E3%80%81CSS3/" itemprop="url" rel="index">
+                    <span itemprop="name">HTML5、CSS3</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.9k</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="一行CSS代码搞定响应式布局"><a href="#一行CSS代码搞定响应式布局" class="headerlink" title="一行CSS代码搞定响应式布局"></a>一行CSS代码搞定响应式布局</h2><h4 id="在这篇文章中，我将教你如何使用-CSS-Grid-来创建一个超酷的图像网格图，它将根据屏幕的宽度来改变列的数量。最精彩的地方在于：所有的响应特性被添加到了一行-css-代码中。这意味着我们不必将-HTML-与丑陋的类名-如col-sm-4-col-md-8-混杂在一起，也不必为每个屏幕创建媒体查询。"><a href="#在这篇文章中，我将教你如何使用-CSS-Grid-来创建一个超酷的图像网格图，它将根据屏幕的宽度来改变列的数量。最精彩的地方在于：所有的响应特性被添加到了一行-css-代码中。这意味着我们不必将-HTML-与丑陋的类名-如col-sm-4-col-md-8-混杂在一起，也不必为每个屏幕创建媒体查询。" class="headerlink" title="在这篇文章中，我将教你如何使用 CSS Grid 来创建一个超酷的图像网格图，它将根据屏幕的宽度来改变列的数量。最精彩的地方在于：所有的响应特性被添加到了一行 css 代码中。这意味着我们不必将 HTML 与丑陋的类名(如col-sm-4, col-md-8)混杂在一起，也不必为每个屏幕创建媒体查询。"></a>在这篇文章中，我将教你如何使用 CSS Grid 来创建一个超酷的图像网格图，它将根据屏幕的宽度来改变列的数量。最精彩的地方在于：所有的响应特性被添加到了一行 css 代码中。这意味着我们不必将 HTML 与丑陋的类名(如col-sm-4, col-md-8)混杂在一起，也不必为每个屏幕创建媒体查询。</h4><a id="more"></a>
+<h3 id="下面是我们初始化网格的外观："><a href="#下面是我们初始化网格的外观：" class="headerlink" title="下面是我们初始化网格的外观："></a>下面是我们初始化网格的外观：</h3><p><img src="https://raw.githubusercontent.com/hsonzhou95/blogImg/master/responseType/initCss1.png?token=AMCTPY2FVPFKQUKNA4QKILS57HAYS" alt="avator"></p>
+<h3 id="HTML代码："><a href="#HTML代码：" class="headerlink" title="HTML代码："></a>HTML代码：</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"item1"</span>&gt;</span>1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"item2"</span>&gt;</span>2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"item3"</span>&gt;</span>3<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"item4"</span>&gt;</span>4<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"item5"</span>&gt;</span>5<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"item6"</span>&gt;</span>6<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="CSS代码"><a href="#CSS代码" class="headerlink" title="CSS代码"></a>CSS代码</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: grid;</span><br><span class="line">    <span class="attribute">grid-template-columns</span>: <span class="number">100px</span> <span class="number">100px</span> <span class="number">100px</span>;</span><br><span class="line">    <span class="attribute">grid-template-rows</span>: <span class="number">50px</span> <span class="number">50px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.item1</span> &#123;</span><br><span class="line">    <span class="attribute">background</span>: darkblue;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.item2</span> &#123;</span><br><span class="line">    <span class="attribute">background</span>: darkgoldenrod;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.item3</span> &#123;</span><br><span class="line">    <span class="attribute">background</span>: darkmagenta;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.item4</span> &#123;</span><br><span class="line">    <span class="attribute">background</span>: darkorange;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.item5</span> &#123;</span><br><span class="line">    <span class="attribute">background</span>: deeppink;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.item6</span> &#123;</span><br><span class="line">    <span class="attribute">background</span>: forestgreen;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="如果这段代码让你感到困惑，我建议你去好好这篇文章https-www-freecodecamp-org-news-learn-css-grid-in-5-minutes-f582e87b1228-教程，其中就详细的解释了布局的基础知识，让我们让列开始具有自适应特性吧。"><a href="#如果这段代码让你感到困惑，我建议你去好好这篇文章https-www-freecodecamp-org-news-learn-css-grid-in-5-minutes-f582e87b1228-教程，其中就详细的解释了布局的基础知识，让我们让列开始具有自适应特性吧。" class="headerlink" title="如果这段代码让你感到困惑，我建议你去好好这篇文章https://www.freecodecamp.org/news/learn-css-grid-in-5-minutes-f582e87b1228/教程，其中就详细的解释了布局的基础知识，让我们让列开始具有自适应特性吧。"></a>如果这段代码让你感到困惑，我建议你去好好这篇文章<a href="https://www.freecodecamp.org/news/learn-css-grid-in-5-minutes-f582e87b1228/教程，其中就详细的解释了布局的基础知识，让我们让列开始具有自适应特性吧。" target="_blank" rel="noopener">https://www.freecodecamp.org/news/learn-css-grid-in-5-minutes-f582e87b1228/教程，其中就详细的解释了布局的基础知识，让我们让列开始具有自适应特性吧。</a></h5><h3 id="基础响应单位：fraction"><a href="#基础响应单位：fraction" class="headerlink" title="基础响应单位：fraction"></a>基础响应单位：fraction</h3><blockquote>
+<p>CSS栅格布局带来了一个全新的值：fraction单位，fraction单位通常简写为fr,他允许你根据需要将容器拆分为多个块。</p>
+</blockquote>
+<h5 id="让我们将每一列更改为一个fraction单位宽："><a href="#让我们将每一列更改为一个fraction单位宽：" class="headerlink" title="让我们将每一列更改为一个fraction单位宽："></a>让我们将每一列更改为一个fraction单位宽：</h5><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: grid;</span><br><span class="line">    <span class="attribute">grid-template-columns</span>: <span class="number">1</span>fr <span class="number">1</span>fr <span class="number">1</span>fr;</span><br><span class="line">    <span class="attribute">grid-template-rows</span>: <span class="number">50px</span> <span class="number">50px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="结果是栅格布局将会把整个宽度分为三个fraction-每列占据一个fraction单位，效果如下："><a href="#结果是栅格布局将会把整个宽度分为三个fraction-每列占据一个fraction单位，效果如下：" class="headerlink" title="结果是栅格布局将会把整个宽度分为三个fraction,每列占据一个fraction单位，效果如下："></a>结果是栅格布局将会把整个宽度分为三个fraction,每列占据一个fraction单位，效果如下：</h5><p><img src="https://raw.githubusercontent.com/hsonzhou95/blogImg/master/responseType/initCss2.png?token=AMCTPYYBWEAU4YFLDSAVXGC57HAFC" alt="avator"></p>
+<h5 id="如果我们将grid-template-columns的值更改为1fr-2fr-1fr-，第二列的宽度将会是其它两列的两倍。总宽现在是四个-fraction-单位，第二列占据两个-fraction-单位，其它列各占一个-fraction。效果如下："><a href="#如果我们将grid-template-columns的值更改为1fr-2fr-1fr-，第二列的宽度将会是其它两列的两倍。总宽现在是四个-fraction-单位，第二列占据两个-fraction-单位，其它列各占一个-fraction。效果如下：" class="headerlink" title="如果我们将grid-template-columns的值更改为1fr 2fr 1fr,，第二列的宽度将会是其它两列的两倍。总宽现在是四个 fraction 单位，第二列占据两个 fraction 单位，其它列各占一个 fraction。效果如下："></a>如果我们将grid-template-columns的值更改为1fr 2fr 1fr,，第二列的宽度将会是其它两列的两倍。总宽现在是四个 fraction 单位，第二列占据两个 fraction 单位，其它列各占一个 fraction。效果如下：</h5><p>![avator](<a href="https://raw.githubusercontent.com/hsonzhou95/blogImg/master/responseType/initCss3.png?token=AMCTPYYIQIMVBBBMDW4OPWC57HAHW&quot;" target="_blank" rel="noopener">https://raw.githubusercontent.com/hsonzhou95/blogImg/master/responseType/initCss3.png?token=AMCTPYYIQIMVBBBMDW4OPWC57HAHW&quot;</a> alt=”avator”)</p>
+<h5 id="总的来说，fraction单位值将使你可以很容易的更改列的宽度"><a href="#总的来说，fraction单位值将使你可以很容易的更改列的宽度" class="headerlink" title="总的来说，fraction单位值将使你可以很容易的更改列的宽度"></a>总的来说，fraction单位值将使你可以很容易的更改列的宽度</h5><h3 id="高级响应"><a href="#高级响应" class="headerlink" title="高级响应"></a>高级响应</h3><h5 id="然而，上面列子并没有给出我们想要的响应性，因为网格总是三列宽。我们希望网格能根据容器的宽度改变列的数量。要做到这一点，你必须学习如下三个概念："><a href="#然而，上面列子并没有给出我们想要的响应性，因为网格总是三列宽。我们希望网格能根据容器的宽度改变列的数量。要做到这一点，你必须学习如下三个概念：" class="headerlink" title="然而，上面列子并没有给出我们想要的响应性，因为网格总是三列宽。我们希望网格能根据容器的宽度改变列的数量。要做到这一点，你必须学习如下三个概念："></a>然而，上面列子并没有给出我们想要的响应性，因为网格总是三列宽。我们希望网格能根据容器的宽度改变列的数量。要做到这一点，你必须学习如下三个概念：</h5><h4 id="repeat"><a href="#repeat" class="headerlink" title="repeat()"></a>repeat()</h4><h5 id="首先我们学校repeat-函数。这是一个强大的指定列和行的方法。让我们使用repeat-函数来更改网格："><a href="#首先我们学校repeat-函数。这是一个强大的指定列和行的方法。让我们使用repeat-函数来更改网格：" class="headerlink" title="首先我们学校repeat()函数。这是一个强大的指定列和行的方法。让我们使用repeat()函数来更改网格："></a>首先我们学校repeat()函数。这是一个强大的指定列和行的方法。让我们使用repeat()函数来更改网格：</h5><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: grid;</span><br><span class="line">    <span class="attribute">grid-template-columns</span>: <span class="built_in">repeat</span>(3, 100px);</span><br><span class="line">    <span class="attribute">grid-template-rows</span>: <span class="built_in">repeat</span>(2, 50px);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="在上面代码中，repeat-3-100px-等于100px-100px-100px。第一个参数指定行与列的数量，第二个参数指定它们的宽度，因此它将为我们提供与开始时完全相同的布局："><a href="#在上面代码中，repeat-3-100px-等于100px-100px-100px。第一个参数指定行与列的数量，第二个参数指定它们的宽度，因此它将为我们提供与开始时完全相同的布局：" class="headerlink" title="在上面代码中，repeat(3, 100px)等于100px 100px 100px。第一个参数指定行与列的数量，第二个参数指定它们的宽度，因此它将为我们提供与开始时完全相同的布局："></a>在上面代码中，repeat(3, 100px)等于100px 100px 100px。第一个参数指定行与列的数量，第二个参数指定它们的宽度，因此它将为我们提供与开始时完全相同的布局：</h5><img src="https://raw.githubusercontent.com/hsonzhou95/blogImg/master/responseType/initCss4.png?token=AMCTPY6M4IIU2XMAJL5H4T257HAL6" />
+
+<h4 id="auto-fit"><a href="#auto-fit" class="headerlink" title="auto-fit"></a>auto-fit</h4><h5 id="然后是auto-fit。让我们跳过固定数量的列，将3替换为自适应数量："><a href="#然后是auto-fit。让我们跳过固定数量的列，将3替换为自适应数量：" class="headerlink" title="然后是auto-fit。让我们跳过固定数量的列，将3替换为自适应数量："></a>然后是auto-fit。让我们跳过固定数量的列，将3替换为自适应数量：</h5><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: grid;</span><br><span class="line">    <span class="attribute">grid-gap</span>: <span class="number">5px</span>;</span><br><span class="line">    <span class="attribute">grid-template-columns</span>: <span class="built_in">repeat</span>(auto-fit, 100px);</span><br><span class="line">    <span class="attribute">grid-template-rows</span>: <span class="built_in">repeat</span>(2, 100px);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="效果如下："><a href="#效果如下：" class="headerlink" title="效果如下："></a>效果如下：</h5><p><img src="https://raw.githubusercontent.com/hsonzhou95/blogImg/master/responseType/initCss5.png?token=AMCTPY6WRDICC4GA4N4XWTK57HAOG" alt="avator"></p>
+<h5 id="现在，栅格将会根据容器的宽度调整其数量。它会尝试在容器中容纳尽可能多的-100px-宽的列。但如果我们将所有列硬写为-100px，我们将永远没法获得所需的弹性，因为它们很难填充整个宽度。正如你在上图看到的，网格通常在右侧留有空白。"><a href="#现在，栅格将会根据容器的宽度调整其数量。它会尝试在容器中容纳尽可能多的-100px-宽的列。但如果我们将所有列硬写为-100px，我们将永远没法获得所需的弹性，因为它们很难填充整个宽度。正如你在上图看到的，网格通常在右侧留有空白。" class="headerlink" title="现在，栅格将会根据容器的宽度调整其数量。它会尝试在容器中容纳尽可能多的 100px 宽的列。但如果我们将所有列硬写为 100px，我们将永远没法获得所需的弹性，因为它们很难填充整个宽度。正如你在上图看到的，网格通常在右侧留有空白。"></a>现在，栅格将会根据容器的宽度调整其数量。它会尝试在容器中容纳尽可能多的 100px 宽的列。但如果我们将所有列硬写为 100px，我们将永远没法获得所需的弹性，因为它们很难填充整个宽度。正如你在上图看到的，网格通常在右侧留有空白。</h5><h4 id="minmax"><a href="#minmax" class="headerlink" title="minmax()"></a>minmax()</h4><h5 id="为了解决上述问题，我们需要minmax-。我们将100px替换为minmax-100px-1fr-，代码如下："><a href="#为了解决上述问题，我们需要minmax-。我们将100px替换为minmax-100px-1fr-，代码如下：" class="headerlink" title="为了解决上述问题，我们需要minmax()。我们将100px替换为minmax(100px,1fr)，代码如下："></a>为了解决上述问题，我们需要minmax()。我们将100px替换为minmax(100px,1fr)，代码如下：</h5><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: grid;</span><br><span class="line">    <span class="attribute">grid-gap</span>: <span class="number">5px</span>;</span><br><span class="line">    <span class="attribute">grid-template-columns</span>: <span class="built_in">repeat</span>(auto-fit, minmax(100px, 1fr));</span><br><span class="line">    <span class="attribute">grid-template-rows</span>: <span class="built_in">repeat</span>(2, 100px);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>请注意，所以响应都发生在一行css代码中</p>
+</blockquote>
+<h5 id="效果如下：-1"><a href="#效果如下：-1" class="headerlink" title="效果如下："></a>效果如下：</h5><p><img src="https://raw.githubusercontent.com/hsonzhou95/blogImg/master/responseType/initCss6.png?token=AMCTPY33OBW6CTDFAT555AC57HAP2" alt="avator"></p>
+<h5 id="正如你所见，效果完美，minmax-函数定义的范围大于或等于min，小于或等于max。"><a href="#正如你所见，效果完美，minmax-函数定义的范围大于或等于min，小于或等于max。" class="headerlink" title="正如你所见，效果完美，minmax()函数定义的范围大于或等于min，小于或等于max。"></a>正如你所见，效果完美，minmax()函数定义的范围大于或等于min，小于或等于max。</h5><h5 id="因此，现在每列将至少为100px。但如果有更多的可用空间，栅格布局将简单地将其均分给每列，因为这些列变成了-fraction-单位，而不是-100px。"><a href="#因此，现在每列将至少为100px。但如果有更多的可用空间，栅格布局将简单地将其均分给每列，因为这些列变成了-fraction-单位，而不是-100px。" class="headerlink" title="因此，现在每列将至少为100px。但如果有更多的可用空间，栅格布局将简单地将其均分给每列，因为这些列变成了 fraction 单位，而不是 100px。"></a>因此，现在每列将至少为100px。但如果有更多的可用空间，栅格布局将简单地将其均分给每列，因为这些列变成了 fraction 单位，而不是 100px。</h5><h5 id="到这里，我们就已经实现了响应式的布局，我们还可以在盒子里面添加你任何想要随之改变的内容，这里就不做过多的演示了。"><a href="#到这里，我们就已经实现了响应式的布局，我们还可以在盒子里面添加你任何想要随之改变的内容，这里就不做过多的演示了。" class="headerlink" title="到这里，我们就已经实现了响应式的布局，我们还可以在盒子里面添加你任何想要随之改变的内容，这里就不做过多的演示了。"></a>到这里，我们就已经实现了响应式的布局，我们还可以在盒子里面添加你任何想要随之改变的内容，这里就不做过多的演示了。</h5><h3 id="浏览器兼容性"><a href="#浏览器兼容性" class="headerlink" title="浏览器兼容性"></a>浏览器兼容性</h3><h5 id="在结束本文前，我提下浏览器支持情况，全球77-的网站将支持-CSS-Grid，而且比例还在逐步攀升。"><a href="#在结束本文前，我提下浏览器支持情况，全球77-的网站将支持-CSS-Grid，而且比例还在逐步攀升。" class="headerlink" title="在结束本文前，我提下浏览器支持情况，全球77%的网站将支持 CSS Grid，而且比例还在逐步攀升。"></a>在结束本文前，我提下浏览器支持情况，全球77%的网站将支持 CSS Grid，而且比例还在逐步攀升。</h5><h5 id="2018将是CSSS网格布局的元年。它将获得突破，并成为前端开发者的必备技能，像过去几年CSS-Flexbox布局发生的情况一样。"><a href="#2018将是CSSS网格布局的元年。它将获得突破，并成为前端开发者的必备技能，像过去几年CSS-Flexbox布局发生的情况一样。" class="headerlink" title="2018将是CSSS网格布局的元年。它将获得突破，并成为前端开发者的必备技能，像过去几年CSS Flexbox布局发生的情况一样。"></a>2018将是CSSS网格布局的元年。它将获得突破，并成为前端开发者的必备技能，像过去几年CSS Flexbox布局发生的情况一样。</h5><h3 id="来自：知乎，作者：icepy"><a href="#来自：知乎，作者：icepy" class="headerlink" title="来自：知乎，作者：icepy"></a>来自：知乎，作者：icepy</h3><h3 id="链接：https-zhuanlan-zhihu-com-p-69809343"><a href="#链接：https-zhuanlan-zhihu-com-p-69809343" class="headerlink" title="链接：https://zhuanlan.zhihu.com/p/69809343"></a>链接：<a href="https://zhuanlan.zhihu.com/p/69809343" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/69809343</a></h3><h3 id="原文作者：Per-Harald-Borgen"><a href="#原文作者：Per-Harald-Borgen" class="headerlink" title="原文作者：Per Harald Borgen"></a>原文作者：Per Harald Borgen</h3><h3 id="原文链接：https-medium-com-free-code-camp-how-to-make-your-html-responsive-by-adding-a-single-line-of-css-2a62de81e431"><a href="#原文链接：https-medium-com-free-code-camp-how-to-make-your-html-responsive-by-adding-a-single-line-of-css-2a62de81e431" class="headerlink" title="原文链接：https://medium.com/free-code-camp/how-to-make-your-html-responsive-by-adding-a-single-line-of-css-2a62de81e431"></a>原文链接：<a href="https://medium.com/free-code-camp/how-to-make-your-html-responsive-by-adding-a-single-line-of-css-2a62de81e431" target="_blank" rel="noopener">https://medium.com/free-code-camp/how-to-make-your-html-responsive-by-adding-a-single-line-of-css-2a62de81e431</a></h3>
+    </div>
+
+    
+    
+    
+    <div>
+      
+      <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+      
+    </div>
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Hson zhou
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2019/12/24/%E4%B8%80%E8%A1%8CCSS%E4%BB%A3%E7%A0%81%E6%90%9E%E5%AE%9A%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80/" title="一行CSS代码搞定响应式布局">http://yoursite.com/2019/12/24/一行CSS代码搞定响应式布局/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%93%8D%E5%BA%94%E5%BC%8F/" rel="tag"># 响应式</a>
+              <a href="/tags/%E6%A0%B7%E5%BC%8F/" rel="tag"># 样式</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/12/14/Vue%E7%BB%84%E4%BB%B6%E5%B8%B8%E8%A7%81%E7%9A%84%E5%85%AD%E7%A7%8D%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F/" rel="prev" title="Vue组件常见的六种通信方式">
+      <i class="fa fa-chevron-left"></i> Vue组件常见的六种通信方式
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/12/28/webpack-vue-cil%E6%A1%86%E6%9E%B6%E7%9A%84%E6%90%AD%E5%BB%BA/" rel="next" title="webpack+vue-cil框架的搭建">
+      webpack+vue-cil框架的搭建 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一行CSS代码搞定响应式布局"><span class="nav-text">一行CSS代码搞定响应式布局</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#在这篇文章中，我将教你如何使用-CSS-Grid-来创建一个超酷的图像网格图，它将根据屏幕的宽度来改变列的数量。最精彩的地方在于：所有的响应特性被添加到了一行-css-代码中。这意味着我们不必将-HTML-与丑陋的类名-如col-sm-4-col-md-8-混杂在一起，也不必为每个屏幕创建媒体查询。"><span class="nav-text">在这篇文章中，我将教你如何使用 CSS Grid 来创建一个超酷的图像网格图，它将根据屏幕的宽度来改变列的数量。最精彩的地方在于：所有的响应特性被添加到了一行 css 代码中。这意味着我们不必将 HTML 与丑陋的类名(如col-sm-4, col-md-8)混杂在一起，也不必为每个屏幕创建媒体查询。</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#下面是我们初始化网格的外观："><span class="nav-text">下面是我们初始化网格的外观：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML代码："><span class="nav-text">HTML代码：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS代码"><span class="nav-text">CSS代码</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#如果这段代码让你感到困惑，我建议你去好好这篇文章https-www-freecodecamp-org-news-learn-css-grid-in-5-minutes-f582e87b1228-教程，其中就详细的解释了布局的基础知识，让我们让列开始具有自适应特性吧。"><span class="nav-text">如果这段代码让你感到困惑，我建议你去好好这篇文章https://www.freecodecamp.org/news/learn-css-grid-in-5-minutes-f582e87b1228/教程，其中就详细的解释了布局的基础知识，让我们让列开始具有自适应特性吧。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基础响应单位：fraction"><span class="nav-text">基础响应单位：fraction</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#让我们将每一列更改为一个fraction单位宽："><span class="nav-text">让我们将每一列更改为一个fraction单位宽：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#结果是栅格布局将会把整个宽度分为三个fraction-每列占据一个fraction单位，效果如下："><span class="nav-text">结果是栅格布局将会把整个宽度分为三个fraction,每列占据一个fraction单位，效果如下：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#如果我们将grid-template-columns的值更改为1fr-2fr-1fr-，第二列的宽度将会是其它两列的两倍。总宽现在是四个-fraction-单位，第二列占据两个-fraction-单位，其它列各占一个-fraction。效果如下："><span class="nav-text">如果我们将grid-template-columns的值更改为1fr 2fr 1fr,，第二列的宽度将会是其它两列的两倍。总宽现在是四个 fraction 单位，第二列占据两个 fraction 单位，其它列各占一个 fraction。效果如下：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#总的来说，fraction单位值将使你可以很容易的更改列的宽度"><span class="nav-text">总的来说，fraction单位值将使你可以很容易的更改列的宽度</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#高级响应"><span class="nav-text">高级响应</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#然而，上面列子并没有给出我们想要的响应性，因为网格总是三列宽。我们希望网格能根据容器的宽度改变列的数量。要做到这一点，你必须学习如下三个概念："><span class="nav-text">然而，上面列子并没有给出我们想要的响应性，因为网格总是三列宽。我们希望网格能根据容器的宽度改变列的数量。要做到这一点，你必须学习如下三个概念：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#repeat"><span class="nav-text">repeat()</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#首先我们学校repeat-函数。这是一个强大的指定列和行的方法。让我们使用repeat-函数来更改网格："><span class="nav-text">首先我们学校repeat()函数。这是一个强大的指定列和行的方法。让我们使用repeat()函数来更改网格：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#在上面代码中，repeat-3-100px-等于100px-100px-100px。第一个参数指定行与列的数量，第二个参数指定它们的宽度，因此它将为我们提供与开始时完全相同的布局："><span class="nav-text">在上面代码中，repeat(3, 100px)等于100px 100px 100px。第一个参数指定行与列的数量，第二个参数指定它们的宽度，因此它将为我们提供与开始时完全相同的布局：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#auto-fit"><span class="nav-text">auto-fit</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#然后是auto-fit。让我们跳过固定数量的列，将3替换为自适应数量："><span class="nav-text">然后是auto-fit。让我们跳过固定数量的列，将3替换为自适应数量：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#效果如下："><span class="nav-text">效果如下：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#现在，栅格将会根据容器的宽度调整其数量。它会尝试在容器中容纳尽可能多的-100px-宽的列。但如果我们将所有列硬写为-100px，我们将永远没法获得所需的弹性，因为它们很难填充整个宽度。正如你在上图看到的，网格通常在右侧留有空白。"><span class="nav-text">现在，栅格将会根据容器的宽度调整其数量。它会尝试在容器中容纳尽可能多的 100px 宽的列。但如果我们将所有列硬写为 100px，我们将永远没法获得所需的弹性，因为它们很难填充整个宽度。正如你在上图看到的，网格通常在右侧留有空白。</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#minmax"><span class="nav-text">minmax()</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#为了解决上述问题，我们需要minmax-。我们将100px替换为minmax-100px-1fr-，代码如下："><span class="nav-text">为了解决上述问题，我们需要minmax()。我们将100px替换为minmax(100px,1fr)，代码如下：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#效果如下：-1"><span class="nav-text">效果如下：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#正如你所见，效果完美，minmax-函数定义的范围大于或等于min，小于或等于max。"><span class="nav-text">正如你所见，效果完美，minmax()函数定义的范围大于或等于min，小于或等于max。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#因此，现在每列将至少为100px。但如果有更多的可用空间，栅格布局将简单地将其均分给每列，因为这些列变成了-fraction-单位，而不是-100px。"><span class="nav-text">因此，现在每列将至少为100px。但如果有更多的可用空间，栅格布局将简单地将其均分给每列，因为这些列变成了 fraction 单位，而不是 100px。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#到这里，我们就已经实现了响应式的布局，我们还可以在盒子里面添加你任何想要随之改变的内容，这里就不做过多的演示了。"><span class="nav-text">到这里，我们就已经实现了响应式的布局，我们还可以在盒子里面添加你任何想要随之改变的内容，这里就不做过多的演示了。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#浏览器兼容性"><span class="nav-text">浏览器兼容性</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#在结束本文前，我提下浏览器支持情况，全球77-的网站将支持-CSS-Grid，而且比例还在逐步攀升。"><span class="nav-text">在结束本文前，我提下浏览器支持情况，全球77%的网站将支持 CSS Grid，而且比例还在逐步攀升。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2018将是CSSS网格布局的元年。它将获得突破，并成为前端开发者的必备技能，像过去几年CSS-Flexbox布局发生的情况一样。"><span class="nav-text">2018将是CSSS网格布局的元年。它将获得突破，并成为前端开发者的必备技能，像过去几年CSS Flexbox布局发生的情况一样。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#来自：知乎，作者：icepy"><span class="nav-text">来自：知乎，作者：icepy</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#链接：https-zhuanlan-zhihu-com-p-69809343"><span class="nav-text">链接：https://zhuanlan.zhihu.com/p/69809343</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原文作者：Per-Harald-Borgen"><span class="nav-text">原文作者：Per Harald Borgen</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原文链接：https-medium-com-free-code-camp-how-to-make-your-html-responsive-by-adding-a-single-line-of-css-2a62de81e431"><span class="nav-text">原文链接：https://medium.com/free-code-camp/how-to-make-your-html-responsive-by-adding-a-single-line-of-css-2a62de81e431</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Hson zhou"
+      src="/images/zhouavtor.jpeg">
+  <p class="site-author-name" itemprop="name">Hson zhou</p>
+  <div class="site-description" itemprop="description">Try to be a better self</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hsonzhou95" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hsonzhou95" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/u/5493344233/home?wvr=5" title="微博 → https:&#x2F;&#x2F;weibo.com&#x2F;u&#x2F;5493344233&#x2F;home?wvr=5" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>微博</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/mailto:zhouxiaobin9c@163.com" title="E-Mail → mailto:zhouxiaobin9c@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+      <div>
+        
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=29378196&auto=1&height=66"></iframe>
+        
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+<div>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<span id="busuanzi_container_site_pv" style='display:none'>
+    本站总访问量 <span id="busuanzi_value_site_pv"></span> 次
+    <span class="post-meta-divider">|</span>
+</span>
+<span id="busuanzi_container_site_uv" style='display:none'>
+    有<span id="busuanzi_value_site_uv"></span>人看过我的博客啦
+</span>
+</div>
+<div class="copyright">
+  
+  &copy; 2017 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hson zhou</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">81k</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,0' opacity='0.5' zIndex='-1' count='150' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
+

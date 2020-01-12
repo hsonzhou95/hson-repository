@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>等风来。</title>
+  
+  <subtitle>成为一名出色的前端工程师</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2020-01-07T11:34:56.439Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>Hson zhou</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>10道高频JavaScript手写面试题及答案</title>
+    <link href="http://yoursite.com/2020/01/07/10%E9%81%93%E9%AB%98%E9%A2%91JavaScript%E6%89%8B%E5%86%99%E9%9D%A2%E8%AF%95%E9%A2%98%E5%8F%8A%E7%AD%94%E6%A1%88/"/>
+    <id>http://yoursite.com/2020/01/07/10%E9%81%93%E9%AB%98%E9%A2%91JavaScript%E6%89%8B%E5%86%99%E9%9D%A2%E8%AF%95%E9%A2%98%E5%8F%8A%E7%AD%94%E6%A1%88/</id>
+    <published>2020-01-07T06:23:31.000Z</published>
+    <updated>2020-01-07T11:34:56.439Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;10道高频JavaScript手写面试题及答案&quot;&gt;&lt;a href=&quot;#10道高频JavaScript手写面试题及答案&quot; class=&quot;headerlink&quot; title=&quot;10道高频JavaScript手写面试题及答案&quot;&gt;&lt;/a&gt;10道高频JavaScript手写面试题及答案&lt;/h2&gt;
+    
+    </summary>
+    
+    
+      <category term="JavaScript" scheme="http://yoursite.com/categories/JavaScript/"/>
+    
+    
+      <category term="JavaScript" scheme="http://yoursite.com/tags/JavaScript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JS面试常客，防抖与节流</title>
+    <link href="http://yoursite.com/2020/01/07/JS%E9%9D%A2%E8%AF%95%E5%B8%B8%E5%AE%A2%EF%BC%8C%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/"/>
+    <id>http://yoursite.com/2020/01/07/JS%E9%9D%A2%E8%AF%95%E5%B8%B8%E5%AE%A2%EF%BC%8C%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/</id>
+    <published>2020-01-07T01:17:11.000Z</published>
+    <updated>2020-01-07T11:36:12.355Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h2 id=&quot;Js中防抖与节流的应用场景，以及在Vue中如何实现防抖与节流&quot;&gt;&lt;a href=&quot;#Js中防抖与节流的应用场景，以及在Vue中如何实现防抖与节流&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="JavaScript" scheme="http://yoursite.com/categories/JavaScript/"/>
+    
+    
+      <category term="防抖" scheme="http://yoursite.com/tags/%E9%98%B2%E6%8A%96/"/>
+    
+      <category term="节流" scheme="http://yoursite.com/tags/%E8%8A%82%E6%B5%81/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>React知识点查漏补缺</title>
+    <link href="http://yoursite.com/2020/01/04/React%E7%9F%A5%E8%AF%86%E7%82%B9%E6%9F%A5%E6%BC%8F%E8%A1%A5%E7%BC%BA/"/>
+    <id>http://yoursite.com/2020/01/04/React%E7%9F%A5%E8%AF%86%E7%82%B9%E6%9F%A5%E6%BC%8F%E8%A1%A5%E7%BC%BA/</id>
+    <published>2020-01-04T12:24:35.000Z</published>
+    <updated>2020-01-04T12:27:30.520Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;React知识点查漏补缺&quot;&gt;&lt;a href=&quot;#React知识点查漏补缺&quot; class=&quot;headerlink&quot; title=&quot;React知识点查漏补缺&quot;&gt;&lt;/a&gt;React知识点查漏补缺&lt;/h2&gt;&lt;h4 id=&quot;问题1：什么是虚拟DOM？&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+      <category term="React" scheme="http://yoursite.com/categories/React/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>webpack+vue-cil框架的搭建</title>
+    <link href="http://yoursite.com/2019/12/28/webpack-vue-cil%E6%A1%86%E6%9E%B6%E7%9A%84%E6%90%AD%E5%BB%BA/"/>
+    <id>http://yoursite.com/2019/12/28/webpack-vue-cil%E6%A1%86%E6%9E%B6%E7%9A%84%E6%90%AD%E5%BB%BA/</id>
+    <published>2019-12-28T06:42:56.000Z</published>
+    <updated>2019-12-29T06:22:27.644Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;Webpack&quot;&gt;&lt;a href=&quot;#Webpack&quot; class=&quot;headerlink&quot; title=&quot;Webpack&quot;&gt;&lt;/a&gt;Webpack&lt;/h2&gt;&lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;h5 id=&quot;现如今的开发当中，webpack的使用越来越频繁，而我们也经常需要使用诸如vue-cli-create-react-app等脚手架来搭建我们的项目，所以对webpack的学习必不可少，下面我们一起进入到webpack的学习当中。&quot;&gt;&lt;a href=&quot;#现如今的开发当中，webpack的使用越来越频繁，而我们也经常需要使用诸如vue-cli-create-react-app等脚手架来搭建我们的项目，所以对webpack的学习必不可少，下面我们一起进入到webpack的学习当中。&quot; class=&quot;headerlink&quot; title=&quot;现如今的开发当中，webpack的使用越来越频繁，而我们也经常需要使用诸如vue/cli create-react-app等脚手架来搭建我们的项目，所以对webpack的学习必不可少，下面我们一起进入到webpack的学习当中。&quot;&gt;&lt;/a&gt;现如今的开发当中，webpack的使用越来越频繁，而我们也经常需要使用诸如vue/cli create-react-app等脚手架来搭建我们的项目，所以对webpack的学习必不可少，下面我们一起进入到webpack的学习当中。&lt;/h5&gt;
+    
+    </summary>
+    
+    
+      <category term="webpack" scheme="http://yoursite.com/categories/webpack/"/>
+    
+    
+      <category term="响应式" scheme="http://yoursite.com/tags/%E5%93%8D%E5%BA%94%E5%BC%8F/"/>
+    
+      <category term="样式" scheme="http://yoursite.com/tags/%E6%A0%B7%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>一行CSS代码搞定响应式布局</title>
+    <link href="http://yoursite.com/2019/12/24/%E4%B8%80%E8%A1%8CCSS%E4%BB%A3%E7%A0%81%E6%90%9E%E5%AE%9A%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80/"/>
+    <id>http://yoursite.com/2019/12/24/%E4%B8%80%E8%A1%8CCSS%E4%BB%A3%E7%A0%81%E6%90%9E%E5%AE%9A%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80/</id>
+    <published>2019-12-24T05:42:56.000Z</published>
+    <updated>2019-12-29T06:05:38.391Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;一行CSS代码搞定响应式布局&quot;&gt;&lt;a href=&quot;#一行CSS代码搞定响应式布局&quot; class=&quot;headerlink&quot; title=&quot;一行CSS代码搞定响应式布局&quot;&gt;&lt;/a&gt;一行CSS代码搞定响应式布局&lt;/h2&gt;&lt;h4 id=&quot;在这篇文章中，我将教你如何使用-CSS-Grid-来创建一个超酷的图像网格图，它将根据屏幕的宽度来改变列的数量。最精彩的地方在于：所有的响应特性被添加到了一行-css-代码中。这意味着我们不必将-HTML-与丑陋的类名-如col-sm-4-col-md-8-混杂在一起，也不必为每个屏幕创建媒体查询。&quot;&gt;&lt;a href=&quot;#在这篇文章中，我将教你如何使用-CSS-Grid-来创建一个超酷的图像网格图，它将根据屏幕的宽度来改变列的数量。最精彩的地方在于：所有的响应特性被添加到了一行-css-代码中。这意味着我们不必将-HTML-与丑陋的类名-如col-sm-4-col-md-8-混杂在一起，也不必为每个屏幕创建媒体查询。&quot; class=&quot;headerlink&quot; title=&quot;在这篇文章中，我将教你如何使用 CSS Grid 来创建一个超酷的图像网格图，它将根据屏幕的宽度来改变列的数量。最精彩的地方在于：所有的响应特性被添加到了一行 css 代码中。这意味着我们不必将 HTML 与丑陋的类名(如col-sm-4, col-md-8)混杂在一起，也不必为每个屏幕创建媒体查询。&quot;&gt;&lt;/a&gt;在这篇文章中，我将教你如何使用 CSS Grid 来创建一个超酷的图像网格图，它将根据屏幕的宽度来改变列的数量。最精彩的地方在于：所有的响应特性被添加到了一行 css 代码中。这意味着我们不必将 HTML 与丑陋的类名(如col-sm-4, col-md-8)混杂在一起，也不必为每个屏幕创建媒体查询。&lt;/h4&gt;
+    
+    </summary>
+    
+    
+      <category term="HTML5、CSS3" scheme="http://yoursite.com/categories/HTML5%E3%80%81CSS3/"/>
+    
+    
+      <category term="响应式" scheme="http://yoursite.com/tags/%E5%93%8D%E5%BA%94%E5%BC%8F/"/>
+    
+      <category term="样式" scheme="http://yoursite.com/tags/%E6%A0%B7%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Vue组件常见的六种通信方式</title>
+    <link href="http://yoursite.com/2019/12/14/Vue%E7%BB%84%E4%BB%B6%E5%B8%B8%E8%A7%81%E7%9A%84%E5%85%AD%E7%A7%8D%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F/"/>
+    <id>http://yoursite.com/2019/12/14/Vue%E7%BB%84%E4%BB%B6%E5%B8%B8%E8%A7%81%E7%9A%84%E5%85%AD%E7%A7%8D%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F/</id>
+    <published>2019-12-14T05:54:23.000Z</published>
+    <updated>2019-12-14T06:48:31.994Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Vue组件常见的六种通信方式&quot;&gt;&lt;a href=&quot;#Vue组件常见的六种通信方式&quot; class=&quot;headerlink&quot; title=&quot;Vue组件常见的六种通信方式&quot;&gt;&lt;/a&gt;Vue组件常见的六种通信方式&lt;/h1&gt;
+    
+    </summary>
+    
+    
+      <category term="Vue" scheme="http://yoursite.com/categories/Vue/"/>
+    
+    
+      <category term="兄弟通信" scheme="http://yoursite.com/tags/%E5%85%84%E5%BC%9F%E9%80%9A%E4%BF%A1/"/>
+    
+      <category term="父子通信" scheme="http://yoursite.com/tags/%E7%88%B6%E5%AD%90%E9%80%9A%E4%BF%A1/"/>
+    
+      <category term="孙子通信" scheme="http://yoursite.com/tags/%E5%AD%99%E5%AD%90%E9%80%9A%E4%BF%A1/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>基于Vue+Ueditor搭建富文本编辑器</title>
+    <link href="http://yoursite.com/2019/11/30/%E5%9F%BA%E4%BA%8EVue-Ueditor%E6%90%AD%E5%BB%BA%E5%AF%8C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8/"/>
+    <id>http://yoursite.com/2019/11/30/%E5%9F%BA%E4%BA%8EVue-Ueditor%E6%90%AD%E5%BB%BA%E5%AF%8C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8/</id>
+    <published>2019-11-30T06:32:43.000Z</published>
+    <updated>2019-12-14T06:51:42.916Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;一、下载Ueditor并将它放在Vue项目中的static目录当中&quot;&gt;&lt;a href=&quot;#一、下载Ueditor并将它放在Vue项目中的static目录当中&quot; class=&quot;headerlink&quot; title=&quot;一、下载Ueditor并将它放在Vue项目中的static目录当中&quot;&gt;&lt;/a&gt;一、下载Ueditor并将它放在Vue项目中的static目录当中&lt;/h2&gt;
+    
+    </summary>
+    
+    
+      <category term="Vue" scheme="http://yoursite.com/categories/Vue/"/>
+    
+    
+      <category term="Ueditor" scheme="http://yoursite.com/tags/Ueditor/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Typescirpt教程详解</title>
+    <link href="http://yoursite.com/2019/11/24/Typescirpt%E6%95%99%E7%A8%8B%E8%AF%A6%E8%A7%A3/"/>
+    <id>http://yoursite.com/2019/11/24/Typescirpt%E6%95%99%E7%A8%8B%E8%AF%A6%E8%A7%A3/</id>
+    <published>2019-11-24T05:54:29.000Z</published>
+    <updated>2019-12-14T06:50:44.342Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Typescript&quot;&gt;&lt;a href=&quot;#Typescript&quot; class=&quot;headerlink&quot; title=&quot;Typescript&quot;&gt;&lt;/a&gt;Typescript&lt;/h1&gt;&lt;h4 id=&quot;定义：&quot;&gt;&lt;a href=&quot;#定义：&quot; class=&quot;headerlink&quot; title=&quot;定义：&quot;&gt;&lt;/a&gt;定义：&lt;/h4&gt;&lt;p&gt; &lt;a href=&quot;http://www.typescriptlang.org/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;TypeScript&lt;/a&gt; 是 JavaScript 的一个超集，主要提供了&lt;strong&gt;类型系统&lt;/strong&gt;和&lt;strong&gt;对 ES6 的支持&lt;/strong&gt;， &lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Typescript" scheme="http://yoursite.com/categories/Typescript/"/>
+    
+    
+      <category term="TS" scheme="http://yoursite.com/tags/TS/"/>
+    
+      <category term="类型声明" scheme="http://yoursite.com/tags/%E7%B1%BB%E5%9E%8B%E5%A3%B0%E6%98%8E/"/>
+    
+      <category term="超集" scheme="http://yoursite.com/tags/%E8%B6%85%E9%9B%86/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>HTML5、CSS3</title>
+    <link href="http://yoursite.com/2019/11/24/HTML5%E3%80%81CSS3/"/>
+    <id>http://yoursite.com/2019/11/24/HTML5%E3%80%81CSS3/</id>
+    <published>2019-11-24T05:42:56.000Z</published>
+    <updated>2019-12-14T06:51:19.367Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;HTML基础&quot;&gt;&lt;a href=&quot;#HTML基础&quot; class=&quot;headerlink&quot; title=&quot;HTML基础&quot;&gt;&lt;/a&gt;HTML基础&lt;/h2&gt;&lt;h3 id=&quot;HTML介绍&quot;&gt;&lt;a href=&quot;#HTML介绍&quot; class=&quot;headerlink&quot; title=&quot;HTML介绍&quot;&gt;&lt;/a&gt;HTML介绍&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;html 是一种规范，一种标准，它通过标记符号来标记要显示的网页中的各个部分。可以告诉浏览器如何显示其中的内容，他是一种由浏览器解释执行的语言。（如：文字如何处理，画面如何安排，图片如何显示等&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+    
+      <category term="HTML5、CSS3" scheme="http://yoursite.com/categories/HTML5%E3%80%81CSS3/"/>
+    
+    
+      <category term="标签" scheme="http://yoursite.com/tags/%E6%A0%87%E7%AD%BE/"/>
+    
+      <category term="页面" scheme="http://yoursite.com/tags/%E9%A1%B5%E9%9D%A2/"/>
+    
+      <category term="布局" scheme="http://yoursite.com/tags/%E5%B8%83%E5%B1%80/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>我的第一篇博客</title>
+    <link href="http://yoursite.com/2019/11/24/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/"/>
+    <id>http://yoursite.com/2019/11/24/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</id>
+    <published>2019-11-24T03:50:35.000Z</published>
+    <updated>2019-12-01T03:42:14.987Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;介绍&quot;&gt;&lt;a href=&quot;#介绍&quot; class=&quot;headerlink&quot; title=&quot;介绍&quot;&gt;&lt;/a&gt;介绍&lt;/h2&gt;
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+</feed>

@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://yoursite.com').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.5.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="Vue组件常见的六种通信方式">
+<meta name="keywords" content="兄弟通信,父子通信,孙子通信">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue组件常见的六种通信方式">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;14&#x2F;Vue%E7%BB%84%E4%BB%B6%E5%B8%B8%E8%A7%81%E7%9A%84%E5%85%AD%E7%A7%8D%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F&#x2F;index.html">
+<meta property="og:site_name" content="等风来。">
+<meta property="og:description" content="Vue组件常见的六种通信方式">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-12-14T06:48:31.994Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2019/12/14/Vue%E7%BB%84%E4%BB%B6%E5%B8%B8%E8%A7%81%E7%9A%84%E5%85%AD%E7%A7%8D%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>Vue组件常见的六种通信方式 | 等风来。</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="等风来。" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">等风来。</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">成为一名出色的前端工程师</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/14/Vue%E7%BB%84%E4%BB%B6%E5%B8%B8%E8%A7%81%E7%9A%84%E5%85%AD%E7%A7%8D%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/zhouavtor.jpeg">
+      <meta itemprop="name" content="Hson zhou">
+      <meta itemprop="description" content="Try to be a better self">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="等风来。">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Vue组件常见的六种通信方式
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2019-12-14 13:54:23 / 修改时间：14:48:31" itemprop="dateCreated datePublished" datetime="2019-12-14T13:54:23+08:00">2019-12-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Vue/" itemprop="url" rel="index">
+                    <span itemprop="name">Vue</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>8.2k</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Vue组件常见的六种通信方式"><a href="#Vue组件常见的六种通信方式" class="headerlink" title="Vue组件常见的六种通信方式"></a>Vue组件常见的六种通信方式</h1><a id="more"></a>
+<blockquote>
+<p>Vue.js 组件实例的作用域是相互独立的，不同组件之间的数据不能互相访问，组件有父级组件、子级组件、兄弟组件，如何选择组件之间的通信方式？针对常用的 props、$emit/$on、vuex、$parent/$children、$attrs/$listeners、provide/inject 进行讲解，对比各自的区别以及使用场景。 </p>
+</blockquote>
+<h2 id="1-props"><a href="#1-props" class="headerlink" title="1.props"></a>1.props</h2><blockquote>
+<p>子组件使用props 接收父组件传递的值，子组件通过 $emit ，让父组件接收事件，改变父组件的data里面的值； </p>
+</blockquote>
+<p>代码示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--父组件--&gt;</span><br><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;title :title=&apos;title&apos; @change=&apos;changeHandle&apos;&gt;&lt;/title&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">	export default</span><br><span class="line">&#123;</span><br><span class="line">    data()&#123;</span><br><span class="line">        return&#123;</span><br><span class="line">            title:&apos;Hello&apos;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;,</span><br><span class="line">    components:&#123;</span><br><span class="line">        title</span><br><span class="line">    &#125;,</span><br><span class="line">    methods:&#123;</span><br><span class="line">        changeHandle(val)&#123;</span><br><span class="line">            this.title = val;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;!--子组件--&gt;</span><br><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;div @click=&apos;changeHandle&apos;&gt;&#123;&#123;title&#125;&#125;&lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default</span><br><span class="line"> &#123;</span><br><span class="line">    props: &#123;        </span><br><span class="line">    title:String   </span><br><span class="line">&#125;,</span><br><span class="line">    methods:&#123;</span><br><span class="line">        changeHandle()&#123;</span><br><span class="line">            this.$emit(&apos;change&apos;, &apos;Hello Vue&apos;);        </span><br><span class="line">            &#125; </span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>子组件通过事件向父组件传递值，父组件更改自己的数据，子组件接收更改后的值； </li>
+</ul>
+<h2 id="2-emit-on"><a href="#2-emit-on" class="headerlink" title="2. $emit/$on"></a>2. $emit/$on</h2><blockquote>
+<p>通过Vue 的实例触发事件和监听事件，实现了跨级组件的通信； </p>
+</blockquote>
+<p>代码示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--在Vue的原型链上添加$bus 属性，赋值为Vue实例--&gt;</span><br><span class="line">const EventBus = new Vue();</span><br><span class="line">Object.defineProperties(Vue.prototype, &#123;</span><br><span class="line">    $bus: &#123;</span><br><span class="line">        get() &#123;</span><br><span class="line">            return EventBus;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line">window.globalVue = EventBus;</span><br><span class="line"></span><br><span class="line">&lt;!--使用--&gt;</span><br><span class="line">// 组件A</span><br><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;div @click=&apos;changeHandle&apos;&gt;触发事件&lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default </span><br><span class="line">&#123;</span><br><span class="line">    methods: </span><br><span class="line">	&#123;</span><br><span class="line">        changeHandle()&#123;</span><br><span class="line">            window.globalVue.$emit(&apos;change&apos;, &apos;456&apos;);</span><br><span class="line">        &#125;</span><br><span class="line">    </span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">// 组件 B</span><br><span class="line">&lt;template&gt;    </span><br><span class="line">	&lt;div&gt;监听事件&lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default </span><br><span class="line">&#123;</span><br><span class="line">    mounted()&#123;</span><br><span class="line">        window.globalVue.$on(&apos;change&apos;, str =&gt; &#123; console.log(str);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>在组件B中监听固定的事件名，当A组件触发change事件后，监听到事件触发，触发事件时机不确定，一般在created 或 mounted 中监听事件； </li>
+</ul>
+<h2 id="3-Vuex"><a href="#3-Vuex" class="headerlink" title="3.Vuex"></a>3.Vuex</h2><blockquote>
+<p>Vuex 是一个单向的数据流的状态管理模式，state 存放数据，当需要改变state 的数据时，只能通过 mutation 更改，如果有异步操作，可以使用 action，最终action 还是通过mutation 更改state 的数据 </p>
+</blockquote>
+<ul>
+<li>Vue Components：Vue 组件，可以执行dispatch 方法触发action；</li>
+<li>dispatch：组件触发action 的方法；</li>
+<li>actions：负责接收组件触发的行为，可以在这里面调用commit()方法更改state中的数据；</li>
+<li>commit：执行mutation的方法，commit(‘mutation 名称’)；</li>
+<li>mutations：更改 state 数据的方法，只能进行同步操作；</li>
+<li>state：存储数据的容器对象,即初始状态树；</li>
+</ul>
+<p>代码演示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;div&gt;&#123;&#123;title&#125;&#125;&lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">import &#123;mapState&#125; from &apos;vuex&apos;;</span><br><span class="line">export default </span><br><span class="line">&#123;</span><br><span class="line">    computed: &#123;        </span><br><span class="line">    ...mapState(&#123;</span><br><span class="line">    	title: state =&gt; state.title</span><br><span class="line">    	&#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-parent-children"><a href="#4-parent-children" class="headerlink" title="4. $parent/$children"></a>4. $parent/$children</h2><blockquote>
+<p>$parent/$children 可以访问到父组件或子组件的实例，通过 $ref 也可以获取到子组件实例，可以访问子组件属性和方法； </p>
+</blockquote>
+<p>代码示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--父组件A--&gt;</span><br><span class="line">&lt;template&gt;  </span><br><span class="line">    &lt;h1&gt;父组件&lt;/h1&gt;    </span><br><span class="line">    &lt;child ref=&apos;child&apos;&gt;&lt;/child&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default </span><br><span class="line">&#123;</span><br><span class="line">    components: &#123;</span><br><span class="line">        child    </span><br><span class="line">        &#125;,</span><br><span class="line">    mounted()&#123;</span><br><span class="line">        console.log(this.$children);</span><br><span class="line"> // 子组件实例数组</span><br><span class="line">        console.log(this.$refs.child);</span><br><span class="line"> // 子组件child实例</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;!--子组件child--&gt;</span><br><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;h1&gt;子组件&lt;/h1&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default</span><br><span class="line"> &#123;</span><br><span class="line">    mounted()&#123;</span><br><span class="line">        console.log(this.$parent); </span><br><span class="line">	// 父组件实例</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-attrs-listeners"><a href="#5-attrs-listeners" class="headerlink" title="5. $attrs/$listeners"></a>5. $attrs/$listeners</h2><blockquote>
+<p>this.$attrs 包含了父作用域中不作为prop被识别的特性绑定(class和style除外)，解释就是，父组件传递了props ，但是子组件没有全部使用props 接收，没被子组件接收的那些props，在$attrs中就可以获取到；$listeners 即是包含了父作用域中的(不含.native修饰器的)v-on 事件监听器，可以使用 v-on=’$listeners’传入到内部组件；在跨级组件中传递属性和事件非常有用 </p>
+</blockquote>
+<p>代码示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--顶级组件A--&gt;</span><br><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;h1&gt;顶级组件A&lt;/h1&gt;</span><br><span class="line">    &lt;!--子级组件B--&gt;</span><br><span class="line">    &lt;componentb data1=&apos;data1&apos;</span><br><span class="line">                data2=&apos;data2&apos; </span><br><span class="line">                @event1=&apos;handleEvent1&apos;</span><br><span class="line">                @event2=&apos;handleEvent2&apos;&gt;</span><br><span class="line">    &lt;/componentb&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default&#123;</span><br><span class="line">    data()&#123;</span><br><span class="line">    return&#123;</span><br><span class="line">            data1:&apos;data1&apos;,</span><br><span class="line">            data2:&apos;data2,</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;,</span><br><span class="line">    components:&#123;</span><br><span class="line">        componentb</span><br><span class="line">        </span><br><span class="line">    &#125;,</span><br><span class="line">    mounted() &#123;</span><br><span class="line">        handleEvent1()&#123;</span><br><span class="line">        console.log(&apos;子级组件触发的事件&apos;);</span><br><span class="line">        &#125;,</span><br><span class="line">        handleEvent2()&#123;</span><br><span class="line">           console.log(&apos;孙子级组件触发的事件&apos;);</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;!--子组件B--&gt;</span><br><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;h1&gt;子组件B&lt;/h1&gt;</span><br><span class="line">    data1的值：&#123;&#123;data1&#125;&#125;</span><br><span class="line">    &lt;componentc v-bind=&apos;$attrs&apos;</span><br><span class="line">                b-on=&apos;$listeners&apos;&gt;</span><br><span class="line">    &lt;/componentc&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default&#123;</span><br><span class="line">    props:&#123;</span><br><span class="line">        data1 </span><br><span class="line">// 这里只获取了父级传递的props 的data1属性</span><br><span class="line">&#125;,</span><br><span class="line">    components:&#123;</span><br><span class="line">        componentc</span><br><span class="line">        </span><br><span class="line">    &#125;,</span><br><span class="line">    mounted()&#123;</span><br><span class="line">        console.log(this.$attrs);</span><br><span class="line"> // 打印 &apos;data2&apos;&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;!--孙子组件c--&gt;</span><br><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;h1&gt;孙子组件c&lt;/h1&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default&#123;</span><br><span class="line">    props:&#123;</span><br><span class="line">    &apos;data2&apos;</span><br><span class="line">    &#125;,</span><br><span class="line">    mounted()&#123;</span><br><span class="line">    this.$emit(&apos;event2&apos;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="6-provide-inject"><a href="#6-provide-inject" class="headerlink" title="6. provide/inject"></a>6. provide/inject</h2><blockquote>
+<p>祖先组件通过 provide 向子孙级组件提供一个对象或返回一个对象的函数，该对象包含可以注入子孙组件的属性。</p>
+</blockquote>
+<h3 id="Vue-不建议直接应用于程序代码中，主要是为高阶插件-组件库提供使用"><a href="#Vue-不建议直接应用于程序代码中，主要是为高阶插件-组件库提供使用" class="headerlink" title="Vue 不建议直接应用于程序代码中，主要是为高阶插件/组件库提供使用"></a>Vue 不建议直接应用于程序代码中，主要是为高阶插件/组件库提供使用</h3><p>代码示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--祖先组件A--&gt;</span><br><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;h1&gt;祖先组件A&lt;/h1&gt;</span><br><span class="line">    &lt;componenta&gt;&lt;/componenta&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default&#123;</span><br><span class="line">    data()&#123;</span><br><span class="line">    return&#123;</span><br><span class="line">            name:&apos;祖先组件A&apos;</span><br><span class="line">        </span><br><span class="line">    &#125;;</span><br><span class="line">    </span><br><span class="line">    &#125;,</span><br><span class="line">    components:&#123;</span><br><span class="line">        componenta</span><br><span class="line">    &#125;,</span><br><span class="line">    provide()&#123;</span><br><span class="line">        return&#123;</span><br><span class="line">            &apos;father&apos;:this</span><br><span class="line">            </span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;!--子级组件A--&gt;</span><br><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;h1&gt;子级组件A&lt;/h1&gt;</span><br><span class="line">    &lt;componentb&gt;&lt;/componentb&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default&#123;</span><br><span class="line">    data()&#123;</span><br><span class="line">        return&#123;           </span><br><span class="line">            name:&apos;子级组件A&apos;</span><br><span class="line">        &#125;;</span><br><span class="line">        </span><br><span class="line">    &#125;,</span><br><span class="line">    components:&#123;</span><br><span class="line">        componentb</span><br><span class="line">    &#125;,</span><br><span class="line">    inject:[&apos;father&apos;],</span><br><span class="line">    mounted()&#123;</span><br><span class="line">        console.log(this.father.name);</span><br><span class="line"> // &apos;祖先组件A&apos;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;!--子孙级组件B--&gt;</span><br><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;h1&gt;子孙级组件B&lt;/h1&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default&#123;</span><br><span class="line">    data()&#123;</span><br><span class="line">        return&#123;</span><br><span class="line">            name:&apos;子孙级组件B&apos;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;,</span><br><span class="line">    inject:[&apos;father&apos;],</span><br><span class="line">    mounted()&#123;</span><br><span class="line">        console.log(this.father.name);</span><br><span class="line"> // &apos;祖先组件A&apos;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>需要注意的是 provide 和 inject 绑定并不是可响应的;这是刻意为之的。然而，如果你传入了一个可监听的对象，那么其对象的属性还是可响应的。</li>
+</ul>
+<p>比如下面这个例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--祖先组件A--&gt;</span><br><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;h1 @clidk=&apos;changeName&apos;&gt;祖先组件A&lt;/h1&gt;</span><br><span class="line">    &lt;componenta&gt;&lt;/componenta&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default&#123;</span><br><span class="line">    data()&#123;</span><br><span class="line">        return&#123;</span><br><span class="line">            name:&apos;祖先组件A&apos;</span><br><span class="line">        &#125;;</span><br><span class="line">&#125;,</span><br><span class="line">    components:&#123;</span><br><span class="line">        componenta</span><br><span class="line">    &#125;,</span><br><span class="line">    provide()&#123;</span><br><span class="line">        return&#123;</span><br><span class="line">            father:&#123;</span><br><span class="line">                name:this.name</span><br><span class="line">                </span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;,</span><br><span class="line">    method:&#123;</span><br><span class="line">        changeName()&#123;</span><br><span class="line">            this.name =&apos;祖先组件A改变了值了&apos;;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;!--子级组件A--&gt;</span><br><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;h1&gt;子级组件A&lt;/h1&gt;</span><br><span class="line">    父级组件name值：&#123;&#123;father.name&#125;&#125;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default&#123;</span><br><span class="line">    data()&#123;</span><br><span class="line">        return&#123;</span><br><span class="line">            name:&apos;子级组件A&apos;</span><br><span class="line">        &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">    components:</span><br><span class="line"> &#123;</span><br><span class="line">        componentb</span><br><span class="line">    &#125;,</span><br><span class="line">    inject:[&apos;father&apos;],</span><br><span class="line">    mounted()&#123;</span><br><span class="line">        console.log(this.father.name);</span><br><span class="line"> // &apos;祖先组件A&apos;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="当父级组件触发了点击事件，将-name-值改变后，子级组件渲染的值并不会变化；"><a href="#当父级组件触发了点击事件，将-name-值改变后，子级组件渲染的值并不会变化；" class="headerlink" title="当父级组件触发了点击事件，将 name 值改变后，子级组件渲染的值并不会变化；"></a>当父级组件触发了点击事件，将 name 值改变后，子级组件渲染的值并不会变化；</h3><p>解决办法：</p>
+<ul>
+<li>祖先级组件提供子级的实例，在子孙级组件注入依赖，这样子孙级组件就可以访问到祖先级组件的属性，缺点是这个提供的实例挂了很多无用的属性和方法；</li>
+<li>使用 Vue2.6 的Vue.observable 方法；</li>
+</ul>
+<p>代码示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--祖先组件A--&gt;</span><br><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;h1 @clidk=&apos;changeName&apos;&gt;祖先组件A&lt;/h1&gt;</span><br><span class="line">    &lt;componenta&gt;&lt;/componenta&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default&#123;</span><br><span class="line">    data()&#123;</span><br><span class="line">        return&#123;</span><br><span class="line">            name:&apos;&apos;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;,</span><br><span class="line">    components:&#123;</span><br><span class="line">        componenta</span><br><span class="line">    &#125;,</span><br><span class="line">    provide()&#123;</span><br><span class="line">        return&#123;</span><br><span class="line">            father:&#123;</span><br><span class="line">                name:Vue.observable(&#123;</span><br><span class="line">                    name:&apos;祖先组件A&apos;</span><br><span class="line">                &#125;)</span><br><span class="line">                </span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;,</span><br><span class="line">    method:&#123;</span><br><span class="line">        changeName()&#123;</span><br><span class="line">            this.name =&apos;祖先组件A改变了值了&apos;;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;!--子级组件A--&gt;</span><br><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;h1&gt;子级组件A&lt;/h1&gt;</span><br><span class="line">    父级组件name值：&#123;&#123;father.name&#125;&#125;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default&#123;</span><br><span class="line">    data()&#123;</span><br><span class="line">        return&#123;</span><br><span class="line">            name:&apos;子级组件A&apos;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;,</span><br><span class="line">    components:&#123;</span><br><span class="line">        componentb</span><br><span class="line">    &#125;,</span><br><span class="line">    inject:[&apos;father&apos;],</span><br><span class="line">    mounted()&#123;</span><br><span class="line">        console.log(this.father.name);</span><br><span class="line"> // &apos;祖先组件A&apos;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>当祖先级组件改变data值，子孙级组件就能获取数据更新值，重新渲染新值；</li>
+</ul>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
+<li>父子级通信推荐使用：props/$emit、$parent/$children/$refs、$attrs/$listeners</li>
+<li>兄弟组件通信推荐使用：$emit/$on、Vuex</li>
+<li>跨级组件通信推荐使用：provide/inject、$emit/$on、Vuex、$attrs/$listeners</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+    <div>
+      
+      <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+      
+    </div>
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Hson zhou
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2019/12/14/Vue%E7%BB%84%E4%BB%B6%E5%B8%B8%E8%A7%81%E7%9A%84%E5%85%AD%E7%A7%8D%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F/" title="Vue组件常见的六种通信方式">http://yoursite.com/2019/12/14/Vue组件常见的六种通信方式/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%85%84%E5%BC%9F%E9%80%9A%E4%BF%A1/" rel="tag"># 兄弟通信</a>
+              <a href="/tags/%E7%88%B6%E5%AD%90%E9%80%9A%E4%BF%A1/" rel="tag"># 父子通信</a>
+              <a href="/tags/%E5%AD%99%E5%AD%90%E9%80%9A%E4%BF%A1/" rel="tag"># 孙子通信</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/11/30/%E5%9F%BA%E4%BA%8EVue-Ueditor%E6%90%AD%E5%BB%BA%E5%AF%8C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8/" rel="prev" title="基于Vue+Ueditor搭建富文本编辑器">
+      <i class="fa fa-chevron-left"></i> 基于Vue+Ueditor搭建富文本编辑器
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/12/24/%E4%B8%80%E8%A1%8CCSS%E4%BB%A3%E7%A0%81%E6%90%9E%E5%AE%9A%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80/" rel="next" title="一行CSS代码搞定响应式布局">
+      一行CSS代码搞定响应式布局 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Vue组件常见的六种通信方式"><span class="nav-text">Vue组件常见的六种通信方式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-props"><span class="nav-text">1.props</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-emit-on"><span class="nav-text">2. $emit/$on</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Vuex"><span class="nav-text">3.Vuex</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-parent-children"><span class="nav-text">4. $parent/$children</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-attrs-listeners"><span class="nav-text">5. $attrs/$listeners</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-provide-inject"><span class="nav-text">6. provide/inject</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Vue-不建议直接应用于程序代码中，主要是为高阶插件-组件库提供使用"><span class="nav-text">Vue 不建议直接应用于程序代码中，主要是为高阶插件/组件库提供使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#当父级组件触发了点击事件，将-name-值改变后，子级组件渲染的值并不会变化；"><span class="nav-text">当父级组件触发了点击事件，将 name 值改变后，子级组件渲染的值并不会变化；</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-text">总结</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Hson zhou"
+      src="/images/zhouavtor.jpeg">
+  <p class="site-author-name" itemprop="name">Hson zhou</p>
+  <div class="site-description" itemprop="description">Try to be a better self</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hsonzhou95" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hsonzhou95" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/u/5493344233/home?wvr=5" title="微博 → https:&#x2F;&#x2F;weibo.com&#x2F;u&#x2F;5493344233&#x2F;home?wvr=5" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>微博</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/mailto:zhouxiaobin9c@163.com" title="E-Mail → mailto:zhouxiaobin9c@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+      <div>
+        
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=29378196&auto=1&height=66"></iframe>
+        
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+<div>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<span id="busuanzi_container_site_pv" style='display:none'>
+    本站总访问量 <span id="busuanzi_value_site_pv"></span> 次
+    <span class="post-meta-divider">|</span>
+</span>
+<span id="busuanzi_container_site_uv" style='display:none'>
+    有<span id="busuanzi_value_site_uv"></span>人看过我的博客啦
+</span>
+</div>
+<div class="copyright">
+  
+  &copy; 2017 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hson zhou</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">81k</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,0' opacity='0.5' zIndex='-1' count='150' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
+

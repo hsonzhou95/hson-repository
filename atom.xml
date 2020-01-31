@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-01-07T11:34:56.439Z</updated>
+  <updated>2020-01-31T07:57:16.040Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ES2020新特性</title>
+    <link href="http://yoursite.com/2020/01/31/ES2020%E6%96%B0%E7%89%B9%E6%80%A7/"/>
+    <id>http://yoursite.com/2020/01/31/ES2020%E6%96%B0%E7%89%B9%E6%80%A7/</id>
+    <published>2020-01-31T07:55:10.000Z</published>
+    <updated>2020-01-31T07:57:16.040Z</updated>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;这几年，Ecma TC39一年一次更新 ecmascript 规范标准，截止目前，以下特性已进入 finished 状态。现在带大家体验种草 ES2020 新特性。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+    
+      <category term="JavaScript" scheme="http://yoursite.com/categories/JavaScript/"/>
+    
+    
+      <category term="ES新特性" scheme="http://yoursite.com/tags/ES%E6%96%B0%E7%89%B9%E6%80%A7/"/>
+    
+  </entry>
   
   <entry>
     <title>10道高频JavaScript手写面试题及答案</title>
@@ -65,7 +88,7 @@
     <link href="http://yoursite.com/2020/01/04/React%E7%9F%A5%E8%AF%86%E7%82%B9%E6%9F%A5%E6%BC%8F%E8%A1%A5%E7%BC%BA/"/>
     <id>http://yoursite.com/2020/01/04/React%E7%9F%A5%E8%AF%86%E7%82%B9%E6%9F%A5%E6%BC%8F%E8%A1%A5%E7%BC%BA/</id>
     <published>2020-01-04T12:24:35.000Z</published>
-    <updated>2020-01-12T03:09:03.441Z</updated>
+    <updated>2020-01-12T03:10:32.904Z</updated>
     
     <summary type="html">
     

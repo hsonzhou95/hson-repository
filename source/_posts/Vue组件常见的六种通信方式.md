@@ -9,11 +9,11 @@ comments: true
 categories: 
 - Vue
 ---
-# Vue组件常见的六种通信方式
-<!-- more -->
-> Vue.js 组件实例的作用域是相互独立的，不同组件之间的数据不能互相访问，组件有父级组件、子级组件、兄弟组件，如何选择组件之间的通信方式？针对常用的 props、$emit/$on、vuex、$parent/$children、$attrs/$listeners、provide/inject 进行讲解，对比各自的区别以及使用场景。 
+## Vue组件常见的六种通信方式
 
-## 1.props
+> Vue.js 组件实例的作用域是相互独立的，不同组件之间的数据不能互相访问，组件有父级组件、子级组件、兄弟组件，如何选择组件之间的通信方式？针对常用的 props、$emit/$on、vuex、$parent/$children、$attrs/$listeners、provide/inject 进行讲解，对比各自的区别以及使用场景。 
+<!-- more -->
+### 1.props
 
 > 子组件使用props 接收父组件传递的值，子组件通过 $emit ，让父组件接收事件，改变父组件的data里面的值； 
 
@@ -63,7 +63,7 @@ export default
 
 -  子组件通过事件向父组件传递值，父组件更改自己的数据，子组件接收更改后的值； 
 
-## 2. $emit/$on
+### 2. $emit/$on
 
 > 通过Vue 的实例触发事件和监听事件，实现了跨级组件的通信； 
 
@@ -116,7 +116,7 @@ export default
 
 -  在组件B中监听固定的事件名，当A组件触发change事件后，监听到事件触发，触发事件时机不确定，一般在created 或 mounted 中监听事件； 
 
-## 3.Vuex
+### 3.Vuex
 
 > Vuex 是一个单向的数据流的状态管理模式，state 存放数据，当需要改变state 的数据时，只能通过 mutation 更改，如果有异步操作，可以使用 action，最终action 还是通过mutation 更改state 的数据 
 
@@ -146,7 +146,7 @@ export default
 </script>
 ```
 
-## 4. $parent/$children
+### 4. $parent/$children
 
 > $parent/$children 可以访问到父组件或子组件的实例，通过 $ref 也可以获取到子组件实例，可以访问子组件属性和方法； 
 
@@ -190,7 +190,7 @@ export default
 </script>
 ```
 
-## 5. $attrs/$listeners
+### 5. $attrs/$listeners
 
 > this.$attrs 包含了父作用域中不作为prop被识别的特性绑定(class和style除外)，解释就是，父组件传递了props ，但是子组件没有全部使用props 接收，没被子组件接收的那些props，在$attrs中就可以获取到；$listeners 即是包含了父作用域中的(不含.native修饰器的)v-on 事件监听器，可以使用 v-on='$listeners'传入到内部组件；在跨级组件中传递属性和事件非常有用 
 
@@ -269,7 +269,7 @@ export default{
 }
 </script>
 ```
-## 6. provide/inject
+### 6. provide/inject
 >祖先组件通过 provide 向子孙级组件提供一个对象或返回一个对象的函数，该对象包含可以注入子孙组件的属性。
 
 ### Vue 不建议直接应用于程序代码中，主要是为高阶插件/组件库提供使用
@@ -475,3 +475,5 @@ export default{
 - 父子级通信推荐使用：props/$emit、$parent/$children/$refs、$attrs/$listeners
 - 兄弟组件通信推荐使用：$emit/$on、Vuex
 - 跨级组件通信推荐使用：provide/inject、$emit/$on、Vuex、$attrs/$listeners
+
+#### 声明：文章著作权归作者所有，如有侵权，请联系删除。

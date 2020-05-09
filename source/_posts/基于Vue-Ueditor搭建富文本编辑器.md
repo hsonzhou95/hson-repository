@@ -8,12 +8,13 @@ categories:
 - Vue
 
 ---
-##  一、下载Ueditor并将它放在Vue项目中的static目录当中
+## 基于Vue+Ueditor搭建富文本编辑器
+####  一、下载Ueditor并将它放在Vue项目中的static目录当中
 <!-- more -->
 
 ![avator](https://raw.githubusercontent.com/hsonzhou95/blogImg/master/lg.png?token=AMCTPY3XNRSRPNHILMW4CJ254C3EG)
 
-##  二、创建Editor编辑界面
+###  二、创建Editor编辑界面
 
 #### 基于Vue组件式的写法
 
@@ -94,7 +95,7 @@ categories:
 import EditorView from "你的component路径"
 ```
 
-#### 使用代码
+### 使用代码
 
 ```
 <template>
@@ -176,6 +177,6 @@ import EditorView from "你的component路径"
 
 #### 这样就可以封装一个基于Vue+Ueditor的富文本编辑器
 
-## 参考文献1： http://fex.baidu.com/ueditor/ 
-## 参考文献2： 
-## https://www.cnblogs.com/xiaoyaoxingchen/p/9082666.html 
+#### 参考文献1： http://fex.baidu.com/ueditor/ 
+#### 参考文献2： 
+#### https://www.cnblogs.com/xiaoyaoxingchen/p/9082666.html 

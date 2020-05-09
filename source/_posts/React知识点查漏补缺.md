@@ -2,7 +2,8 @@
 title: React知识点查漏补缺
 date: 2020-01-04 20:24:35
 tags:
-
+- 面试题
+- React
 comments: true
 type: "React"
 categories:
@@ -10,13 +11,13 @@ categories:
 ---
 ## React知识点查漏补缺
 
-#### 问题1：什么是虚拟DOM？
+### 问题1：什么是虚拟DOM？
 
 > 难度: ⭐
 
 ##### **虚拟 DOM (VDOM)**是真实 DOM 在内存中的表示。UI 的表示形式保存在内存中，并与实际的 DOM 同步。这是一个发生在渲染函数被调用和元素在屏幕上显示之间的步骤，整个过程被称为**调和**。
-
-#### 问题2：类组件和函数组件之间的区别是啥?
+<!-- more -->
+### 问题2：类组件和函数组件之间的区别是啥?
 
 > 难度: ⭐⭐
 
@@ -31,7 +32,7 @@ categories:
 | 是否有生命周期  | 没有     | 有     |
 | 是否有状态state | 没有     | 有     |
 
-#### 问题3 React中refs干嘛用的？
+### 问题3 React中refs干嘛用的？
 
 > 难度: ⭐⭐
 
@@ -75,7 +76,7 @@ function CustomForm ({handleSubmit}) {
 }
 ```
 
-#### 问题4 在React中如何处理事件
+### 问题4 在React中如何处理事件
 
 > 难度: ⭐⭐
 
@@ -83,7 +84,7 @@ function CustomForm ({handleSubmit}) {
 
 ##### 比较有趣的是，React 实际上并不将事件附加到子节点本身。React 使用单个事件侦听器侦听顶层的所有事件。这对性能有好处，也意味着 React 在更新 DOM 时不需要跟踪事件监听器。
 
-#### 问题5 state和props区别是啥?
+### 问题5 state和props区别是啥?
 
 > 难度: ⭐⭐
 
@@ -94,7 +95,7 @@ function CustomForm ({handleSubmit}) {
 - 没有`state`的叫做无状态组件，有`state`的叫做有状态组件；
 - 多用 `props`，少用 `state`，也就是多写无状态组件。
 
-#### 问题5 如何创建refs
+### 问题6 如何创建refs
 
 > 难度: ⭐⭐
 
@@ -132,7 +133,7 @@ class UserForm extends Component {
 }
  ```
 
-#### 问题7 什么是高阶组件
+### 问题7 什么是高阶组件
 
 > 难度: ⭐⭐
 
@@ -149,7 +150,7 @@ HOC 可以用于以下许多用例
 - state 抽象和操作
 - props 处理
 
-#### 问题 8：在构造函数调用 `super` 并将 `props` 作为参数传入的作用是啥？
+### 问题 8：在构造函数调用 `super` 并将 `props` 作为参数传入的作用是啥？
 
 > 难度: ⭐⭐
 
@@ -187,7 +188,7 @@ class MyComponent extends React.Component {
 
 ###### 上面示例揭示了一点。`props` 的行为只有在构造函数中是不同的，在构造函数之外也是一样的。
 
-#### 问题 9：什么是控制组件？
+### 问题 9：什么是控制组件？
 
 > 难度: ⭐⭐⭐
 
@@ -195,7 +196,7 @@ class MyComponent extends React.Component {
 
 ##### 而 React 的工作方式则不同。包含表单的组件将跟踪其状态中的输入值，并在每次回调函数(例如`onChange`)触发时重新渲染组件，因为状态被更新。以这种方式由 React 控制其值的输入表单元素称为**受控组件**。
 
-#### 问题 10：如何 React.createElement ？
+### 问题 10：如何 React.createElement ？
 
 > 难度: ⭐⭐⭐
 
@@ -219,7 +220,7 @@ const element = React.createElement(
 );
 ```
 
-#### 问题 11：讲讲什么是 JSX ？
+### 问题 11：讲讲什么是 JSX ？
 
 > 难度: ⭐⭐⭐
 
@@ -238,7 +239,7 @@ class MyComponent extends React.Component {
 }
 ```
 
-#### 问题 13：为什么不直接更新 `state` 呢 ?
+### 问题 12：为什么不直接更新 `state` 呢 ?
 
 > 难度: ⭐⭐⭐
 
@@ -256,7 +257,7 @@ class MyComponent extends React.Component {
 This.setState({message: ‘Hello World’});
 ```
 
-#### 问题 14：React 组件生命周期有哪些不同阶段？
+### 问题 13：React 组件生命周期有哪些不同阶段？
 
 > 难度: ⭐⭐⭐
 
@@ -271,7 +272,7 @@ This.setState({message: ‘Hello World’});
 
 **Error Handling**：在这个阶段，不论在渲染的过程中，还是在生命周期方法中或是在任何子组件的构造函数中发生错误，该组件都会被调用。这个阶段包含了 `componentDidCatch` 生命周期方法。
 
-#### 问题 15：React 的生命周期方法有哪些？
+### 问题 14：React 的生命周期方法有哪些？
 
 > 难度: ⭐⭐⭐
 
@@ -283,7 +284,7 @@ This.setState({message: ‘Hello World’});
 - `componentDidUpdate`：它主要用于更新DOM以响应`props`或`state`更改。
 - `componentWillUnmount`：它用于取消任何的网络请求，或删除与组件关联的所有事件监听器。
 
-#### 问题 16：这三个点(...)在 React 干嘛用的？
+### 问题 15：这三个点(...)在 React 干嘛用的？
 
 > 难度: ⭐⭐⭐
 
@@ -313,7 +314,7 @@ this.setState(prevState => {
 });
 ```
 
-#### 问题 17：使用 React Hooks 好处是啥？
+### 问题 16：使用 React Hooks 好处是啥？
 
 > 难度: ⭐⭐⭐
 
@@ -321,13 +322,13 @@ this.setState(prevState => {
 
 ##### Hooks 在类中不起作用，通过使用它们，咱们可以完全避免使用生命周期方法，例如 `componentDidMount`、`componentDidUpdate`、`componentWillUnmount`。相反，使用像`useEffect`这样的内置钩子。
 
-#### 问题 18：什么是 React Hooks？
+### 问题 17：什么是 React Hooks？
 
 > 难度: ⭐⭐⭐
 
 ##### **Hooks**是 React 16.8 中的新添加内容。它们允许在不编写类的情况下使用`state`和其他 React 特性。使用 Hooks，可以从组件中提取有状态逻辑，这样就可以独立地测试和重用它。Hooks 允许咱们在不改变组件层次结构的情况下重用有状态逻辑，这样在许多组件之间或与社区共享 Hooks 变得很容易。
 
-#### 问题 19：React 中的 `useState()` 是什么？
+### 问题 18：React 中的 `useState()` 是什么？
 
 > 难度: ⭐⭐⭐
 
@@ -349,7 +350,7 @@ const setCount = () => {
 
 ##### 咱们可以在任何地方使用`setCounter`方法更新计数状态-在这种情况下，咱们在`setCount`函数内部使用它可以做更多的事情，使用 Hooks，能够使咱们的代码保持更多功能，还可以避免过多使用基于类的组件。
 
-#### 问题 20：React 中的StrictMode(严格模式)是什么？？
+### 问题 19：React 中的StrictMode(严格模式)是什么？？
 
 > 难度: ⭐⭐⭐
 
@@ -359,7 +360,7 @@ React 的`StrictMode`是一种辅助组件，可以帮助咱们编写更好的 r
 - 验证是否使用的已经废弃的方法，如果有，会在控制台给出警告。
 - 通过识别潜在的风险预防一些副作用。
 
-#### 问题 21：为什么类方法需要绑定到类实例？
+### 问题 20：为什么类方法需要绑定到类实例？
 
 > 难度: ⭐⭐⭐
 
@@ -389,7 +390,7 @@ class SubmitButton extends React.Component {
 }
 ```
 
-#### 问题 22：什么是 prop drilling，如何避免？
+### 问题 21：什么是 prop drilling，如何避免？
 
 > 难度: ⭐⭐⭐
 
@@ -399,7 +400,7 @@ class SubmitButton extends React.Component {
 
 ##### 为了避免`prop drilling`，一种常用的方法是使用**React Context**。通过定义提供数据的`Provider`组件，并允许嵌套的组件通过`Consumer`组件或`useContext` Hook 使用上下文数据。
 
-#### 问题 23：描述 Flux 与 MVC？
+### 问题 22：描述 Flux 与 MVC？
 
 > 难度: ⭐⭐⭐
 
@@ -411,7 +412,7 @@ class SubmitButton extends React.Component {
 
 ###### 使用 Flux 模式的复杂用户界面不再遭受级联更新，任何给定的React 组件都能够根据 `store` 提供的数据重建其状态。Flux 模式还通过限制对共享数据的直接访问来加强数据完整性。
 
-#### 问题 24：受控组件和非受控组件区别是啥？
+### 问题 23：受控组件和非受控组件区别是啥？
 
 > 难度: ⭐⭐⭐
 
@@ -422,7 +423,7 @@ class SubmitButton extends React.Component {
 
 ##### 这样做的主要原因是受控组件支持即时字段验证，允许有条件地禁用/启用按钮，强制输入格式。
 
-####  问题 25：这段代码有什么问题吗？
+###  问题 24：这段代码有什么问题吗？
 
 > 难度: ⭐⭐⭐⭐
 
@@ -436,13 +437,13 @@ this.setState((prevState, props) => {
 
 ###### 没有什么问题。这种方式很少被使用，咱们可以将一个函数传递给`setState`，该函数接收上一个 `state` 的值和当前的`props`，并返回一个新的状态，如果咱们需要根据以前的状态重新设置状态，推荐使用这种方式。
 
-#### 问题 26：什么是 React Context?
+### 问题 25：什么是 React Context?
 
 > 难度: ⭐⭐⭐⭐
 
 ##### `Context` 通过组件树提供了一个传递数据的方法，从而避免了在每一个层级手动的传递 `props` 属性。
 
-#### 问题 27：什么是 React Fiber?
+### 问题 26：什么是 React Fiber?
 
 > 难度: ⭐⭐⭐⭐
 
@@ -450,7 +451,7 @@ this.setState((prevState, props) => {
 
 ##### React Fiber 的目标是增强其在动画、布局和手势等领域的适用性。它的主要特性是增量渲染:能够将渲染工作分割成块，并将其分散到多个帧中。
 
-#### 问题 28：如何在 ReactJS 的 Props上应用验证？
+### 问题 27：如何在 ReactJS 的 Props上应用验证？
 
 > 难度: ⭐⭐⭐⭐
 
@@ -484,7 +485,7 @@ User.propTypes = {
 };
  ```
 
-#### 问题 29：在 React 中使用构造函数和 getInitialState 有什么区别？
+### 问题 28：在 React 中使用构造函数和 getInitialState 有什么区别？
 
 > 难度: ⭐⭐⭐⭐
 
@@ -499,7 +500,7 @@ class MyComponent extends React.Component {
 }
  ```
 
-#### 问题 30：如何有条件地向 React 组件添加属性？
+### 问题 29：如何有条件地向 React 组件添加属性？
 
 > 难度: ⭐⭐⭐⭐
 
@@ -536,7 +537,7 @@ var component = (
 );
 ```
 
-#### 问题 31：Hooks会取代 `render props` 和高阶组件吗？
+### 问题 30：Hooks会取代 `render props` 和高阶组件吗？
 
 > 难度: ⭐⭐⭐⭐
 
@@ -544,7 +545,7 @@ var component = (
 
 ##### 这两种模式仍然有一席之地(例如，一个虚拟的 `scroller` 组件可能有一个 `renderItem prop`，或者一个可视化的容器组件可能有它自己的 DOM 结构)。但在大多数情况下，Hooks 就足够了，可以帮助减少树中的嵌套。
 
-#### 问题 32：如何避免组件的重新渲染？
+### 问题 31：如何避免组件的重新渲染？
 
 > 难度: ⭐⭐⭐⭐
 
@@ -557,13 +558,13 @@ React 中最常见的问题之一是组件不必要地重新渲染。React 提�
 
 ##### 通过使用 **React Profiler**，可以在使用这些方法前后对性能进行测量，从而确保通过进行给定的更改来实际改进性能。
 
-#### 问题 33：什么是纯函数？
+### 问题 32：什么是纯函数？
 
 > 难度: ⭐⭐⭐⭐⭐
 
 ##### 纯函数是不依赖并且不会在其作用域之外修改变量状态的函数。本质上，纯函数始终在给定相同参数的情况下返回相同结果。
 
-#### 问题 34：当调用`setState`时，React `render` 是如何工作的？
+### 问题 33：当调用`setState`时，React `render` 是如何工作的？
 
 > 难度: ⭐⭐⭐⭐⭐
 
@@ -573,7 +574,7 @@ React 中最常见的问题之一是组件不必要地重新渲染。React 提�
 
 2. ##### 原生 DOM 渲染:React 只会在虚拟DOM中修改真实DOM节点，而且修改的次数非常少——这是很棒的React特性，它优化了真实DOM的变化，使React变得更快。
 
-####  问题 35：如何避免在React重新绑定实例？
+###  问题 34：如何避免在React重新绑定实例？
 
 > 难度: ⭐⭐⭐⭐⭐
 

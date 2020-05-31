@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://yoursite.com').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.5.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="这几年，Ecma TC39一年一次更新 ecmascript 规范标准，截止目前，以下特性已进入 finished 状态。现在带大家体验种草 ES2020 新特性。">
+<meta name="keywords" content="ES新特性">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ES2020新特性">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;01&#x2F;31&#x2F;ES2020%E6%96%B0%E7%89%B9%E6%80%A7&#x2F;index.html">
+<meta property="og:site_name" content="等风来。">
+<meta property="og:description" content="这几年，Ecma TC39一年一次更新 ecmascript 规范标准，截止目前，以下特性已进入 finished 状态。现在带大家体验种草 ES2020 新特性。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-01-31T07:57:16.040Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2020/01/31/ES2020%E6%96%B0%E7%89%B9%E6%80%A7/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>ES2020新特性 | 等风来。</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="等风来。" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">等风来。</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">成为一名出色的前端工程师</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/31/ES2020%E6%96%B0%E7%89%B9%E6%80%A7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/zhouavtor.jpeg">
+      <meta itemprop="name" content="Hson zhou">
+      <meta itemprop="description" content="Try to be a better self">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="等风来。">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          ES2020新特性
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-01-31 15:55:10 / 修改时间：15:57:16" itemprop="dateCreated datePublished" datetime="2020-01-31T15:55:10+08:00">2020-01-31</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>5.5k</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <blockquote>
+<p>这几年，Ecma TC39一年一次更新 ecmascript 规范标准，截止目前，以下特性已进入 finished 状态。现在带大家体验种草 ES2020 新特性。</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="一、Promise-allSettled"><a href="#一、Promise-allSettled" class="headerlink" title="一、Promise.allSettled"></a>一、Promise.allSettled</h2><h4 id="Promise-all的缺陷"><a href="#Promise-all的缺陷" class="headerlink" title="Promise.all的缺陷"></a>Promise.all的缺陷</h4><h5 id="都知道Promise-all具体并发执行异步任务的能力。但它的最大问题就是如果其中某个任务出现异常（reject），所有任务都会挂掉，Promise将会进入reject状态。"><a href="#都知道Promise-all具体并发执行异步任务的能力。但它的最大问题就是如果其中某个任务出现异常（reject），所有任务都会挂掉，Promise将会进入reject状态。" class="headerlink" title="都知道Promise.all具体并发执行异步任务的能力。但它的最大问题就是如果其中某个任务出现异常（reject），所有任务都会挂掉，Promise将会进入reject状态。"></a>都知道Promise.all具体并发执行异步任务的能力。但它的最大问题就是如果其中某个任务出现异常（reject），所有任务都会挂掉，Promise将会进入reject状态。</h5><h5 id="想象这个场景：你的页面有三个区域，分别对应三个独立的接口数据，使用-Promise-all-来并发三个接口，如果其中任意一个接口服务异常，状态是reject-这会导致页面中该三个区域数据全都无法渲染出来，因为任何-reject-都会进入catch回调-很明显，这是无法接受的，如下："><a href="#想象这个场景：你的页面有三个区域，分别对应三个独立的接口数据，使用-Promise-all-来并发三个接口，如果其中任意一个接口服务异常，状态是reject-这会导致页面中该三个区域数据全都无法渲染出来，因为任何-reject-都会进入catch回调-很明显，这是无法接受的，如下：" class="headerlink" title="想象这个场景：你的页面有三个区域，分别对应三个独立的接口数据，使用 Promise.all 来并发三个接口，如果其中任意一个接口服务异常，状态是reject,这会导致页面中该三个区域数据全都无法渲染出来，因为任何 reject 都会进入catch回调, 很明显，这是无法接受的，如下："></a>想象这个场景：你的页面有三个区域，分别对应三个独立的接口数据，使用 Promise.all 来并发三个接口，如果其中任意一个接口服务异常，状态是reject,这会导致页面中该三个区域数据全都无法渲染出来，因为任何 reject 都会进入catch回调, 很明显，这是无法接受的，如下：</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Promise</span>.all([</span><br><span class="line">	<span class="built_in">Promise</span>.reject(&#123;<span class="attr">code</span>:<span class="number">500</span>,<span class="attr">message</span>:<span class="string">'服务异常'</span>&#125;),</span><br><span class="line">	<span class="built_in">Promise</span>.resolve(&#123;<span class="attr">code</span>:<span class="number">200</span>,<span class="attr">list</span>:[]&#125;),</span><br><span class="line">	Promsie.resolve(&#123;<span class="attr">code</span>:<span class="number">200</span>,list[]&#125;)</span><br><span class="line">]).then(<span class="function"><span class="params">res</span>=&gt;</span>&#123;</span><br><span class="line">	<span class="comment">// 如果其中一个任务是 reject，则不会执行到这个回调。</span></span><br><span class="line">	RenderContent(res);</span><br><span class="line">&#125;).catch</span><br><span class="line">(<span class="function">(<span class="params">error</span>) =&gt;</span> &#123;</span><br><span class="line">	<span class="comment">// 本例中会执行到这个回调</span></span><br><span class="line">	<span class="comment">// error: &#123;code: 500, msg: "服务异常"&#125;</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h5 id="我们需要一种机制，如果并发任务中，无论一个任务正常或者异常，都会返回对应的的状态（fulfilled-或者-rejected）与结果（业务value-或者-拒因-reason），在-then-里面通过-filter-来过滤出想要的业务逻辑结果，这就能最大限度的保障业务当前状态的可访问性，而-Promise-allSettled-就是解决这问题的。"><a href="#我们需要一种机制，如果并发任务中，无论一个任务正常或者异常，都会返回对应的的状态（fulfilled-或者-rejected）与结果（业务value-或者-拒因-reason），在-then-里面通过-filter-来过滤出想要的业务逻辑结果，这就能最大限度的保障业务当前状态的可访问性，而-Promise-allSettled-就是解决这问题的。" class="headerlink" title="我们需要一种机制，如果并发任务中，无论一个任务正常或者异常，都会返回对应的的状态（fulfilled 或者 rejected）与结果（业务value 或者 拒因 reason），在 then 里面通过 filter 来过滤出想要的业务逻辑结果，这就能最大限度的保障业务当前状态的可访问性，而 Promise.allSettled 就是解决这问题的。"></a>我们需要一种机制，如果并发任务中，无论一个任务正常或者异常，都会返回对应的的状态（fulfilled 或者 rejected）与结果（业务value 或者 拒因 reason），在 then 里面通过 filter 来过滤出想要的业务逻辑结果，这就能最大限度的保障业务当前状态的可访问性，而 Promise.allSettled 就是解决这问题的。</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Promise</span>.allSettled([</span><br><span class="line"><span class="built_in">Promise</span>.reject(&#123;<span class="attr">code</span>: <span class="number">500</span>, <span class="attr">msg</span>: <span class="string">'服务异常'</span>&#125;),</span><br><span class="line"><span class="built_in">Promise</span>.resolve(&#123; <span class="attr">code</span>: <span class="number">200</span>, <span class="attr">list</span>: []&#125;),</span><br><span class="line"><span class="built_in">Promise</span>.resolve(&#123;<span class="attr">code</span>: <span class="number">200</span>, <span class="attr">list</span>: []&#125;)</span><br><span class="line">]).then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">		<span class="comment">/*</span></span><br><span class="line"><span class="comment">        0: &#123;status: "rejected", reason: &#123;…&#125;&#125;</span></span><br><span class="line"><span class="comment">        1: &#123;status: "fulfilled", value: &#123;…&#125;&#125;</span></span><br><span class="line"><span class="comment">        2: &#123;status: "fulfilled", value: &#123;…&#125;&#125;</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">	<span class="comment">// 过滤掉 rejected 状态，尽可能多的保证页面区域数据渲染</span></span><br><span class="line">RenderContent(res.filter(<span class="function">(<span class="params">el</span>) =&gt;</span> &#123;</span><br><span class="line">	<span class="keyword">return</span> el.status !== <span class="string">'rejected'</span>;</span><br><span class="line">	&#125;));</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="二、可选链（Optional-chaining）"><a href="#二、可选链（Optional-chaining）" class="headerlink" title="二、可选链（Optional chaining）"></a>二、可选链（Optional chaining）</h3><h5 id="可选链-可让我们在查询具有多层级的对象时，不再需要进行冗余的各种前置校验"><a href="#可选链-可让我们在查询具有多层级的对象时，不再需要进行冗余的各种前置校验" class="headerlink" title="可选链 可让我们在查询具有多层级的对象时，不再需要进行冗余的各种前置校验"></a>可选链 可让我们在查询具有多层级的对象时，不再需要进行冗余的各种前置校验</h5><h5 id="日常开发中，我们经常会遇到这种查询"><a href="#日常开发中，我们经常会遇到这种查询" class="headerlink" title="日常开发中，我们经常会遇到这种查询"></a>日常开发中，我们经常会遇到这种查询</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = user &amp;&amp; user.info &amp;&amp; user.info.name</span><br></pre></td></tr></table></figure>
+
+<h5 id="又或是这种"><a href="#又或是这种" class="headerlink" title="又或是这种"></a>又或是这种</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> age = user &amp;&amp; user.info &amp;&amp; user.info.getAge &amp;&amp; user.info.getAge();</span><br></pre></td></tr></table></figure>
+
+<h5 id="这是一种丑陋但又不得不做的前置校验，否则很容易命中Uncaught-TypeError-Cannot-read-property…-这种错误，这极有可能让你整个应用挂掉。"><a href="#这是一种丑陋但又不得不做的前置校验，否则很容易命中Uncaught-TypeError-Cannot-read-property…-这种错误，这极有可能让你整个应用挂掉。" class="headerlink" title="这是一种丑陋但又不得不做的前置校验，否则很容易命中Uncaught TypeError: Cannot read property… 这种错误，这极有可能让你整个应用挂掉。"></a>这是一种丑陋但又不得不做的前置校验，否则很容易命中Uncaught TypeError: Cannot read property… 这种错误，这极有可能让你整个应用挂掉。</h5><h5 id="用了-Optional-Chaining-，上面代码会变成"><a href="#用了-Optional-Chaining-，上面代码会变成" class="headerlink" title="用了 Optional Chaining ，上面代码会变成"></a>用了 Optional Chaining ，上面代码会变成</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = user?.info?.name;</span><br><span class="line"><span class="keyword">var</span> age = user?.info?.getAge?.();</span><br></pre></td></tr></table></figure>
+
+<h5 id="可选链中的-表示如果问号左边表达式有值-就会继续查询问号后面的字段。根据上面可以看出，用可选链可以大量简化类似繁琐的前置校验操作，而且更安全。"><a href="#可选链中的-表示如果问号左边表达式有值-就会继续查询问号后面的字段。根据上面可以看出，用可选链可以大量简化类似繁琐的前置校验操作，而且更安全。" class="headerlink" title="可选链中的 ? 表示如果问号左边表达式有值, 就会继续查询问号后面的字段。根据上面可以看出，用可选链可以大量简化类似繁琐的前置校验操作，而且更安全。"></a>可选链中的 ? 表示如果问号左边表达式有值, 就会继续查询问号后面的字段。根据上面可以看出，用可选链可以大量简化类似繁琐的前置校验操作，而且更安全。</h5><h3 id="三、空值合并运算符（Nullish-coalescing-Operator）"><a href="#三、空值合并运算符（Nullish-coalescing-Operator）" class="headerlink" title="三、空值合并运算符（Nullish coalescing Operator）"></a>三、空值合并运算符（Nullish coalescing Operator）</h3><h5 id="当我们查询某个属性时，经常会遇到，如果没有该属性就会设置一个默认的值。比如下面代码中查询玩家等级。"><a href="#当我们查询某个属性时，经常会遇到，如果没有该属性就会设置一个默认的值。比如下面代码中查询玩家等级。" class="headerlink" title="当我们查询某个属性时，经常会遇到，如果没有该属性就会设置一个默认的值。比如下面代码中查询玩家等级。"></a>当我们查询某个属性时，经常会遇到，如果没有该属性就会设置一个默认的值。比如下面代码中查询玩家等级。</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> level = (user.data &amp;&amp; user.data.level) || <span class="string">'暂无等级'</span>;</span><br></pre></td></tr></table></figure>
+
+<h5 id="在JS中，空字符串、0-等，当进行逻辑操作符判段时，会自动转化为-false。在上面的代码里，如果玩家等级本身就是-0-级-变量-level-就会被赋值-暂无等级-字符串，这是逻辑错误。"><a href="#在JS中，空字符串、0-等，当进行逻辑操作符判段时，会自动转化为-false。在上面的代码里，如果玩家等级本身就是-0-级-变量-level-就会被赋值-暂无等级-字符串，这是逻辑错误。" class="headerlink" title="在JS中，空字符串、0 等，当进行逻辑操作符判段时，会自动转化为 false。在上面的代码里，如果玩家等级本身就是 0 级, 变量 level 就会被赋值 暂无等级 字符串，这是逻辑错误。"></a>在JS中，空字符串、0 等，当进行逻辑操作符判段时，会自动转化为 false。在上面的代码里，如果玩家等级本身就是 0 级, 变量 level 就会被赋值 暂无等级 字符串，这是逻辑错误。</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> level;</span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">typeof</span> user.level === <span class="string">'number'</span>) &#123;</span><br><span class="line">    level = user.level;</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span>(!user.level) &#123;</span><br><span class="line">    level = <span class="string">'暂无等级'</span>;</span><br><span class="line">&#125; <span class="keyword">else</span>&#123;</span><br><span class="line">    level = user.level;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="来看看用空值合并运算符如何处理"><a href="#来看看用空值合并运算符如何处理" class="headerlink" title="来看看用空值合并运算符如何处理"></a>来看看用空值合并运算符如何处理</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// &#123;</span></span><br><span class="line"><span class="comment">//   "level": 0</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br><span class="line"><span class="keyword">var</span> level = <span class="string">`<span class="subst">$&#123;user.level&#125;</span>级`</span>?? <span class="string">'暂无等级'</span>;</span><br><span class="line"><span class="comment">// level -&gt; '0级'</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="用空值合并运算在逻辑正确的前提下，代码更加简洁。"><a href="#用空值合并运算在逻辑正确的前提下，代码更加简洁。" class="headerlink" title="用空值合并运算在逻辑正确的前提下，代码更加简洁。"></a>用空值合并运算在逻辑正确的前提下，代码更加简洁。</h5><h5 id="空值合并运算符-与-可选链-相结合，可以很轻松处理多级查询并赋予默认值问题。"><a href="#空值合并运算符-与-可选链-相结合，可以很轻松处理多级查询并赋予默认值问题。" class="headerlink" title="空值合并运算符 与 可选链 相结合，可以很轻松处理多级查询并赋予默认值问题。"></a>空值合并运算符 与 可选链 相结合，可以很轻松处理多级查询并赋予默认值问题。</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> level = user.data?.level ?? <span class="string">'暂无等级'</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="四：dynamic-import"><a href="#四：dynamic-import" class="headerlink" title="四：dynamic-import"></a>四：dynamic-import</h3><h5 id="按需-import-提案几年前就已提出，如今终于能进入ES正式规范。这里个人理解成“按需”更为贴切。现代前端打包资源越来越大，打包成几M的JS资源已成常态，而往往前端应用初始化时根本不需要全量加载逻辑资源，为了首屏渲染速度更快，很多时候都是按需加载，比如懒加载图片等。而这些按需执行逻辑资源都体现在某一个事件回调中去加载。"><a href="#按需-import-提案几年前就已提出，如今终于能进入ES正式规范。这里个人理解成“按需”更为贴切。现代前端打包资源越来越大，打包成几M的JS资源已成常态，而往往前端应用初始化时根本不需要全量加载逻辑资源，为了首屏渲染速度更快，很多时候都是按需加载，比如懒加载图片等。而这些按需执行逻辑资源都体现在某一个事件回调中去加载。" class="headerlink" title="按需 import 提案几年前就已提出，如今终于能进入ES正式规范。这里个人理解成“按需”更为贴切。现代前端打包资源越来越大，打包成几M的JS资源已成常态，而往往前端应用初始化时根本不需要全量加载逻辑资源，为了首屏渲染速度更快，很多时候都是按需加载，比如懒加载图片等。而这些按需执行逻辑资源都体现在某一个事件回调中去加载。"></a>按需 import 提案几年前就已提出，如今终于能进入ES正式规范。这里个人理解成“按需”更为贴切。现代前端打包资源越来越大，打包成几M的JS资源已成常态，而往往前端应用初始化时根本不需要全量加载逻辑资源，为了首屏渲染速度更快，很多时候都是按需加载，比如懒加载图片等。而这些按需执行逻辑资源都体现在某一个事件回调中去加载。</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">el.onclick = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">	<span class="keyword">import</span>(<span class="string">`/path/current-logic.js`</span>).then(<span class="function">(<span class="params"><span class="built_in">module</span></span>) =&gt;</span> &#123;</span><br><span class="line">		<span class="built_in">module</span>.doSomthing();</span><br><span class="line">	&#125;).catch(<span class="function">(<span class="params">err</span>) =&gt;</span> &#123;</span><br><span class="line">		<span class="comment">// load error;</span></span><br><span class="line">	&#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="当然，webpack已经很好的支持了该特性。"><a href="#当然，webpack已经很好的支持了该特性。" class="headerlink" title="当然，webpack已经很好的支持了该特性。"></a>当然，webpack已经很好的支持了该特性。</h5><h3 id="五、globalThis"><a href="#五、globalThis" class="headerlink" title="五、globalThis"></a>五、globalThis</h3><h5 id="Javascript-在不同的环境获取全局对象有不通的方式，node-中通过-global-web中通过-window-self-等，有些甚至通过-this-获取，但通过-this-是及其危险的，this-在-js-中异常复杂，它严重依赖当前的执行上下文，这些无疑增加了获取全局对象的复杂性。过去获取全局对象，可通过一个全局函数。"><a href="#Javascript-在不同的环境获取全局对象有不通的方式，node-中通过-global-web中通过-window-self-等，有些甚至通过-this-获取，但通过-this-是及其危险的，this-在-js-中异常复杂，它严重依赖当前的执行上下文，这些无疑增加了获取全局对象的复杂性。过去获取全局对象，可通过一个全局函数。" class="headerlink" title="Javascript 在不同的环境获取全局对象有不通的方式，node 中通过 global, web中通过 window, self 等，有些甚至通过 this 获取，但通过 this 是及其危险的，this 在 js 中异常复杂，它严重依赖当前的执行上下文，这些无疑增加了获取全局对象的复杂性。过去获取全局对象，可通过一个全局函数。"></a>Javascript 在不同的环境获取全局对象有不通的方式，node 中通过 global, web中通过 window, self 等，有些甚至通过 this 获取，但通过 this 是及其危险的，this 在 js 中异常复杂，它严重依赖当前的执行上下文，这些无疑增加了获取全局对象的复杂性。过去获取全局对象，可通过一个全局函数。</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> getGlobal = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"> 	<span class="keyword">if</span>(typeofself !==  <span class="string">'undefined'</span>) &#123; </span><br><span class="line">		<span class="keyword">return</span>	self; </span><br><span class="line">		&#125;</span><br><span class="line">	<span class="keyword">if</span>(<span class="keyword">typeof</span> <span class="built_in">window</span> !== <span class="string">'undefined'</span>) </span><br><span class="line">	&#123; </span><br><span class="line">		<span class="keyword">return</span> <span class="built_in">window</span>; </span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(typeofglobal !== <span class="string">'undefined'</span>) &#123; </span><br><span class="line">		<span class="keyword">return</span> global;</span><br><span class="line">  &#125;</span><br><span class="line">thrownewError(<span class="string">'unable to locate global object'</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> globals = getGlobal();</span><br><span class="line"></span><br><span class="line"><span class="comment">//https://developer.mozilla.org/zhCN/docs/Web/JavaScript/Reference/Global_Objects/globalThis</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="而-globalThis-目的就是提供一种标准化方式访问全局对象，有了-globalThis-后，你可以在任意上下文，任意时刻都能获取到全局对象。"><a href="#而-globalThis-目的就是提供一种标准化方式访问全局对象，有了-globalThis-后，你可以在任意上下文，任意时刻都能获取到全局对象。" class="headerlink" title="而 globalThis 目的就是提供一种标准化方式访问全局对象，有了 globalThis 后，你可以在任意上下文，任意时刻都能获取到全局对象。"></a>而 globalThis 目的就是提供一种标准化方式访问全局对象，有了 globalThis 后，你可以在任意上下文，任意时刻都能获取到全局对象。</h5><h2 id="六、BigInt"><a href="#六、BigInt" class="headerlink" title="六、BigInt"></a>六、BigInt</h2><h5 id="Js-中-Number类型只能安全的表示-2-53-1-至-2-53-1-范的值，即Number-MINSAFEINTEGER-至Number-MAXSAFEINTEGER，超出这个范围的整数计算或者表示会丢失精度。"><a href="#Js-中-Number类型只能安全的表示-2-53-1-至-2-53-1-范的值，即Number-MINSAFEINTEGER-至Number-MAXSAFEINTEGER，超出这个范围的整数计算或者表示会丢失精度。" class="headerlink" title="Js 中 Number类型只能安全的表示-(2^53-1)至 2^53-1 范的值，即Number.MINSAFEINTEGER 至Number.MAXSAFEINTEGER，超出这个范围的整数计算或者表示会丢失精度。"></a>Js 中 Number类型只能安全的表示-(2^53-1)至 2^53-1 范的值，即Number.MINSAFEINTEGER 至Number.MAXSAFEINTEGER，超出这个范围的整数计算或者表示会丢失精度。</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> num = <span class="built_in">Number</span>.MAX_SAFE_INTEGER;  <span class="comment">// -&gt; 9007199254740991</span></span><br><span class="line"></span><br><span class="line">num = num + <span class="number">1</span>; <span class="comment">// -&gt; 9007199254740992</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 再次加 +1 后无法正常运算</span></span><br><span class="line">num = num + <span class="number">1</span>; </span><br><span class="line"><span class="comment">// -&gt; 9007199254740992</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 两个不同的值，却返回了true</span></span><br><span class="line"><span class="number">9007199254740992</span> === <span class="number">9007199254740993</span></span><br><span class="line"><span class="comment">// -&gt; true</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="为解决此问题，ES2020提供一种新的数据类型：BigInt。使用-BigInt-有两种方式："><a href="#为解决此问题，ES2020提供一种新的数据类型：BigInt。使用-BigInt-有两种方式：" class="headerlink" title="为解决此问题，ES2020提供一种新的数据类型：BigInt。使用 BigInt 有两种方式："></a>为解决此问题，ES2020提供一种新的数据类型：BigInt。使用 BigInt 有两种方式：</h5><h5 id="在整数字面量后面加n"><a href="#在整数字面量后面加n" class="headerlink" title="在整数字面量后面加n."></a>在整数字面量后面加n.</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> bigIntNum = <span class="number">9007199254740993n</span>;</span><br></pre></td></tr></table></figure>
+
+<h5 id="使用BigInt函数"><a href="#使用BigInt函数" class="headerlink" title="使用BigInt函数"></a>使用BigInt函数</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> bigIntNum = BigInt(<span class="number">9007199254740</span>);</span><br><span class="line"><span class="keyword">var</span> anOtherBigIntNum = BigInt(<span class="string">'9007199254740993'</span>);</span><br></pre></td></tr></table></figure>
+
+<h5 id="通过BigInt，我们可以安全的进行大数整形计算"><a href="#通过BigInt，我们可以安全的进行大数整形计算" class="headerlink" title="通过BigInt，我们可以安全的进行大数整形计算"></a>通过BigInt，我们可以安全的进行大数整形计算</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> bigNumRet = <span class="number">9007199254740993n</span>+ <span class="number">9007199254740993n</span>; <span class="comment">// -&gt; -&gt; 18014398509481986n</span></span><br><span class="line">bigNumRet.toString(); <span class="comment">// -&gt; '18014398509481986'</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="注意"><a href="#注意" class="headerlink" title="注意:"></a>注意:</h5><h5 id="BigInt-是一种新的数据原始（primitive）类型。"><a href="#BigInt-是一种新的数据原始（primitive）类型。" class="headerlink" title="BigInt 是一种新的数据原始（primitive）类型。"></a>BigInt 是一种新的数据原始（primitive）类型。</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typeof</span> <span class="number">9007199254740993n</span>; </span><br><span class="line"><span class="comment">// -&gt; 'bigint'</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="尽可能避免通过调用函数-BigInt-方式来实例化超大整型。因为参数的字面量实际也是-Number-类型的一次实例化，超出安全范围的数字，可能会引起精度丢失。"><a href="#尽可能避免通过调用函数-BigInt-方式来实例化超大整型。因为参数的字面量实际也是-Number-类型的一次实例化，超出安全范围的数字，可能会引起精度丢失。" class="headerlink" title="尽可能避免通过调用函数 BigInt 方式来实例化超大整型。因为参数的字面量实际也是 Number 类型的一次实例化，超出安全范围的数字，可能会引起精度丢失。"></a>尽可能避免通过调用函数 BigInt 方式来实例化超大整型。因为参数的字面量实际也是 Number 类型的一次实例化，超出安全范围的数字，可能会引起精度丢失。</h5><h3 id="七、String-prototype-matchAll"><a href="#七、String-prototype-matchAll" class="headerlink" title="七、String.prototype.matchAll"></a>七、String.prototype.matchAll</h3><h5 id="思考下面代码"><a href="#思考下面代码" class="headerlink" title="思考下面代码"></a>思考下面代码</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">'&lt;text&gt;JS&lt;/text&gt;&lt;text&gt;正则&lt;/text&gt;'</span>;</span><br><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/&lt;\w+&gt;(.*?)&lt;\/\w+&gt;/g</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(str.match(reg));</span><br><span class="line"><span class="comment">// -&gt; ["&lt;text&gt;JS&lt;/text&gt;", "&lt;text&gt;正则&lt;/text&gt;"]</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="可以看出返回的数组里包含了父匹配项，但未匹配到子项（group）。移除全局搜索符“g”试试。"><a href="#可以看出返回的数组里包含了父匹配项，但未匹配到子项（group）。移除全局搜索符“g”试试。" class="headerlink" title="可以看出返回的数组里包含了父匹配项，但未匹配到子项（group）。移除全局搜索符“g”试试。"></a>可以看出返回的数组里包含了父匹配项，但未匹配到子项（group）。移除全局搜索符“g”试试。</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">'&lt;text&gt;JS&lt;/text&gt;&lt;text&gt;正则&lt;/text&gt;'</span>;</span><br><span class="line"><span class="comment">// 注意这里没有全局搜素标示符“g”</span></span><br><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/&lt;\w+&gt;(.*?)&lt;\/\w+&gt;/</span>;</span><br><span class="line"><span class="built_in">console</span>.log(str.match(reg));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 上面会打印出</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">[</span></span><br><span class="line"><span class="comment">    "&lt;text&gt;JS&lt;/text&gt;",</span></span><br><span class="line"><span class="comment">    "JS",</span></span><br><span class="line"><span class="comment">    index: 0,</span></span><br><span class="line"><span class="comment">    input:</span></span><br><span class="line"><span class="comment">    "&lt;text&gt;JS&lt;/text&gt;&lt;text&gt;正则&lt;/text&gt;",</span></span><br><span class="line"><span class="comment">    groups: undefined</span></span><br><span class="line"><span class="comment">]</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="这样可以获取到匹配的父项，包括子项（group），但只能获取到第一个满足的匹配字符。能看出上面无法匹配到-正则。"><a href="#这样可以获取到匹配的父项，包括子项（group），但只能获取到第一个满足的匹配字符。能看出上面无法匹配到-正则。" class="headerlink" title="这样可以获取到匹配的父项，包括子项（group），但只能获取到第一个满足的匹配字符。能看出上面无法匹配到 正则。"></a>这样可以获取到匹配的父项，包括子项（group），但只能获取到第一个满足的匹配字符。能看出上面无法匹配到 <text><code>正则</code><text>。</h5><h5 id="如果获取到全局所有匹配项，包括子项呢？"><a href="#如果获取到全局所有匹配项，包括子项呢？" class="headerlink" title="如果获取到全局所有匹配项，包括子项呢？"></a>如果获取到全局所有匹配项，包括子项呢？</h5><h5 id="ES2020提供了一种简易的方式：String-prototype-matchAll-该方法会返回一个迭代器。"><a href="#ES2020提供了一种简易的方式：String-prototype-matchAll-该方法会返回一个迭代器。" class="headerlink" title="ES2020提供了一种简易的方式：String.prototype.matchAll, 该方法会返回一个迭代器。"></a>ES2020提供了一种简易的方式：String.prototype.matchAll, 该方法会返回一个迭代器。</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">'&lt;text&gt;JS&lt;/text&gt;&lt;text&gt;正则&lt;/text&gt;'</span>;</span><br><span class="line"><span class="keyword">var</span> allMatchs = str.matchAll(<span class="regexp">/&lt;\w+&gt;(.*?)&lt;\/\w+&gt;/g</span>);</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">const</span> match <span class="keyword">of</span> allMatchs) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(match);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">第一次迭代返回：</span></span><br><span class="line"><span class="comment">[</span></span><br><span class="line"><span class="comment">    "&lt;text&gt;JS&lt;/text&gt;",</span></span><br><span class="line"><span class="comment">    "JS",</span></span><br><span class="line"><span class="comment">    index: 0,</span></span><br><span class="line"><span class="comment">    input: "&lt;text&gt;JS&lt;/text&gt;&lt;text&gt;正则&lt;/text&gt;",</span></span><br><span class="line"><span class="comment">    groups: undefined</span></span><br><span class="line"><span class="comment">]</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">第二次迭代返回：</span></span><br><span class="line"><span class="comment">[</span></span><br><span class="line"><span class="comment">    "&lt;text&gt;正则&lt;/text&gt;",</span></span><br><span class="line"><span class="comment">    "正则",</span></span><br><span class="line"><span class="comment">    index: 15,</span></span><br><span class="line"><span class="comment">    input: "&lt;text&gt;JS&lt;/text&gt;&lt;text&gt;正则&lt;/text&gt;",</span></span><br><span class="line"><span class="comment">    groups: undefined</span></span><br><span class="line"><span class="comment">]</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="能看出每次迭代中可获取所有的匹配，以及本次匹配的成功的一些其他元信息。"><a href="#能看出每次迭代中可获取所有的匹配，以及本次匹配的成功的一些其他元信息。" class="headerlink" title="能看出每次迭代中可获取所有的匹配，以及本次匹配的成功的一些其他元信息。"></a>能看出每次迭代中可获取所有的匹配，以及本次匹配的成功的一些其他元信息。</h5><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><strong>来自：掘金，作者：blue_yang</strong></p>
+<p><strong>链接：<a href="https://juejin.im/post/5e09ca40518825499a5abff7" target="_blank" rel="noopener">https://juejin.im/post/5e09ca40518825499a5abff7</a></strong></p>
+<ul>
+<li><a href="https://github.com/tc39/proposals/blob/master/finished-proposals.md" target="_blank" rel="noopener">https://github.com/tc39/proposals/blob/master/finished-proposals.md</a></li>
+<li>prop-tc39.now.sh/</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+    <div>
+      
+      <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+      
+    </div>
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Hson zhou
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2020/01/31/ES2020%E6%96%B0%E7%89%B9%E6%80%A7/" title="ES2020新特性">http://yoursite.com/2020/01/31/ES2020新特性/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/ES%E6%96%B0%E7%89%B9%E6%80%A7/" rel="tag"># ES新特性</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/01/07/10%E9%81%93%E9%AB%98%E9%A2%91JavaScript%E6%89%8B%E5%86%99%E9%9D%A2%E8%AF%95%E9%A2%98%E5%8F%8A%E7%AD%94%E6%A1%88/" rel="prev" title="10道高频JavaScript手写面试题及答案">
+      <i class="fa fa-chevron-left"></i> 10道高频JavaScript手写面试题及答案
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、Promise-allSettled"><span class="nav-text">一、Promise.allSettled</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Promise-all的缺陷"><span class="nav-text">Promise.all的缺陷</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#都知道Promise-all具体并发执行异步任务的能力。但它的最大问题就是如果其中某个任务出现异常（reject），所有任务都会挂掉，Promise将会进入reject状态。"><span class="nav-text">都知道Promise.all具体并发执行异步任务的能力。但它的最大问题就是如果其中某个任务出现异常（reject），所有任务都会挂掉，Promise将会进入reject状态。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#想象这个场景：你的页面有三个区域，分别对应三个独立的接口数据，使用-Promise-all-来并发三个接口，如果其中任意一个接口服务异常，状态是reject-这会导致页面中该三个区域数据全都无法渲染出来，因为任何-reject-都会进入catch回调-很明显，这是无法接受的，如下："><span class="nav-text">想象这个场景：你的页面有三个区域，分别对应三个独立的接口数据，使用 Promise.all 来并发三个接口，如果其中任意一个接口服务异常，状态是reject,这会导致页面中该三个区域数据全都无法渲染出来，因为任何 reject 都会进入catch回调, 很明显，这是无法接受的，如下：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#我们需要一种机制，如果并发任务中，无论一个任务正常或者异常，都会返回对应的的状态（fulfilled-或者-rejected）与结果（业务value-或者-拒因-reason），在-then-里面通过-filter-来过滤出想要的业务逻辑结果，这就能最大限度的保障业务当前状态的可访问性，而-Promise-allSettled-就是解决这问题的。"><span class="nav-text">我们需要一种机制，如果并发任务中，无论一个任务正常或者异常，都会返回对应的的状态（fulfilled 或者 rejected）与结果（业务value 或者 拒因 reason），在 then 里面通过 filter 来过滤出想要的业务逻辑结果，这就能最大限度的保障业务当前状态的可访问性，而 Promise.allSettled 就是解决这问题的。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、可选链（Optional-chaining）"><span class="nav-text">二、可选链（Optional chaining）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#可选链-可让我们在查询具有多层级的对象时，不再需要进行冗余的各种前置校验"><span class="nav-text">可选链 可让我们在查询具有多层级的对象时，不再需要进行冗余的各种前置校验</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#日常开发中，我们经常会遇到这种查询"><span class="nav-text">日常开发中，我们经常会遇到这种查询</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#又或是这种"><span class="nav-text">又或是这种</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#这是一种丑陋但又不得不做的前置校验，否则很容易命中Uncaught-TypeError-Cannot-read-property…-这种错误，这极有可能让你整个应用挂掉。"><span class="nav-text">这是一种丑陋但又不得不做的前置校验，否则很容易命中Uncaught TypeError: Cannot read property… 这种错误，这极有可能让你整个应用挂掉。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#用了-Optional-Chaining-，上面代码会变成"><span class="nav-text">用了 Optional Chaining ，上面代码会变成</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#可选链中的-表示如果问号左边表达式有值-就会继续查询问号后面的字段。根据上面可以看出，用可选链可以大量简化类似繁琐的前置校验操作，而且更安全。"><span class="nav-text">可选链中的 ? 表示如果问号左边表达式有值, 就会继续查询问号后面的字段。根据上面可以看出，用可选链可以大量简化类似繁琐的前置校验操作，而且更安全。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、空值合并运算符（Nullish-coalescing-Operator）"><span class="nav-text">三、空值合并运算符（Nullish coalescing Operator）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#当我们查询某个属性时，经常会遇到，如果没有该属性就会设置一个默认的值。比如下面代码中查询玩家等级。"><span class="nav-text">当我们查询某个属性时，经常会遇到，如果没有该属性就会设置一个默认的值。比如下面代码中查询玩家等级。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#在JS中，空字符串、0-等，当进行逻辑操作符判段时，会自动转化为-false。在上面的代码里，如果玩家等级本身就是-0-级-变量-level-就会被赋值-暂无等级-字符串，这是逻辑错误。"><span class="nav-text">在JS中，空字符串、0 等，当进行逻辑操作符判段时，会自动转化为 false。在上面的代码里，如果玩家等级本身就是 0 级, 变量 level 就会被赋值 暂无等级 字符串，这是逻辑错误。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#来看看用空值合并运算符如何处理"><span class="nav-text">来看看用空值合并运算符如何处理</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#用空值合并运算在逻辑正确的前提下，代码更加简洁。"><span class="nav-text">用空值合并运算在逻辑正确的前提下，代码更加简洁。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#空值合并运算符-与-可选链-相结合，可以很轻松处理多级查询并赋予默认值问题。"><span class="nav-text">空值合并运算符 与 可选链 相结合，可以很轻松处理多级查询并赋予默认值问题。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四：dynamic-import"><span class="nav-text">四：dynamic-import</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#按需-import-提案几年前就已提出，如今终于能进入ES正式规范。这里个人理解成“按需”更为贴切。现代前端打包资源越来越大，打包成几M的JS资源已成常态，而往往前端应用初始化时根本不需要全量加载逻辑资源，为了首屏渲染速度更快，很多时候都是按需加载，比如懒加载图片等。而这些按需执行逻辑资源都体现在某一个事件回调中去加载。"><span class="nav-text">按需 import 提案几年前就已提出，如今终于能进入ES正式规范。这里个人理解成“按需”更为贴切。现代前端打包资源越来越大，打包成几M的JS资源已成常态，而往往前端应用初始化时根本不需要全量加载逻辑资源，为了首屏渲染速度更快，很多时候都是按需加载，比如懒加载图片等。而这些按需执行逻辑资源都体现在某一个事件回调中去加载。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#当然，webpack已经很好的支持了该特性。"><span class="nav-text">当然，webpack已经很好的支持了该特性。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、globalThis"><span class="nav-text">五、globalThis</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Javascript-在不同的环境获取全局对象有不通的方式，node-中通过-global-web中通过-window-self-等，有些甚至通过-this-获取，但通过-this-是及其危险的，this-在-js-中异常复杂，它严重依赖当前的执行上下文，这些无疑增加了获取全局对象的复杂性。过去获取全局对象，可通过一个全局函数。"><span class="nav-text">Javascript 在不同的环境获取全局对象有不通的方式，node 中通过 global, web中通过 window, self 等，有些甚至通过 this 获取，但通过 this 是及其危险的，this 在 js 中异常复杂，它严重依赖当前的执行上下文，这些无疑增加了获取全局对象的复杂性。过去获取全局对象，可通过一个全局函数。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#而-globalThis-目的就是提供一种标准化方式访问全局对象，有了-globalThis-后，你可以在任意上下文，任意时刻都能获取到全局对象。"><span class="nav-text">而 globalThis 目的就是提供一种标准化方式访问全局对象，有了 globalThis 后，你可以在任意上下文，任意时刻都能获取到全局对象。</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六、BigInt"><span class="nav-text">六、BigInt</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Js-中-Number类型只能安全的表示-2-53-1-至-2-53-1-范的值，即Number-MINSAFEINTEGER-至Number-MAXSAFEINTEGER，超出这个范围的整数计算或者表示会丢失精度。"><span class="nav-text">Js 中 Number类型只能安全的表示-(2^53-1)至 2^53-1 范的值，即Number.MINSAFEINTEGER 至Number.MAXSAFEINTEGER，超出这个范围的整数计算或者表示会丢失精度。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#为解决此问题，ES2020提供一种新的数据类型：BigInt。使用-BigInt-有两种方式："><span class="nav-text">为解决此问题，ES2020提供一种新的数据类型：BigInt。使用 BigInt 有两种方式：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#在整数字面量后面加n"><span class="nav-text">在整数字面量后面加n.</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#使用BigInt函数"><span class="nav-text">使用BigInt函数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#通过BigInt，我们可以安全的进行大数整形计算"><span class="nav-text">通过BigInt，我们可以安全的进行大数整形计算</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#注意"><span class="nav-text">注意:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#BigInt-是一种新的数据原始（primitive）类型。"><span class="nav-text">BigInt 是一种新的数据原始（primitive）类型。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#尽可能避免通过调用函数-BigInt-方式来实例化超大整型。因为参数的字面量实际也是-Number-类型的一次实例化，超出安全范围的数字，可能会引起精度丢失。"><span class="nav-text">尽可能避免通过调用函数 BigInt 方式来实例化超大整型。因为参数的字面量实际也是 Number 类型的一次实例化，超出安全范围的数字，可能会引起精度丢失。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#七、String-prototype-matchAll"><span class="nav-text">七、String.prototype.matchAll</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#思考下面代码"><span class="nav-text">思考下面代码</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#可以看出返回的数组里包含了父匹配项，但未匹配到子项（group）。移除全局搜索符“g”试试。"><span class="nav-text">可以看出返回的数组里包含了父匹配项，但未匹配到子项（group）。移除全局搜索符“g”试试。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#这样可以获取到匹配的父项，包括子项（group），但只能获取到第一个满足的匹配字符。能看出上面无法匹配到-正则。"><span class="nav-text">这样可以获取到匹配的父项，包括子项（group），但只能获取到第一个满足的匹配字符。能看出上面无法匹配到 正则。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#如果获取到全局所有匹配项，包括子项呢？"><span class="nav-text">如果获取到全局所有匹配项，包括子项呢？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#ES2020提供了一种简易的方式：String-prototype-matchAll-该方法会返回一个迭代器。"><span class="nav-text">ES2020提供了一种简易的方式：String.prototype.matchAll, 该方法会返回一个迭代器。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#能看出每次迭代中可获取所有的匹配，以及本次匹配的成功的一些其他元信息。"><span class="nav-text">能看出每次迭代中可获取所有的匹配，以及本次匹配的成功的一些其他元信息。</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-text">参考资料</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Hson zhou"
+      src="/images/zhouavtor.jpeg">
+  <p class="site-author-name" itemprop="name">Hson zhou</p>
+  <div class="site-description" itemprop="description">Try to be a better self</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hsonzhou95" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hsonzhou95" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/u/5493344233/home?wvr=5" title="微博 → https:&#x2F;&#x2F;weibo.com&#x2F;u&#x2F;5493344233&#x2F;home?wvr=5" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>微博</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/mailto:zhouxiaobin9c@163.com" title="E-Mail → mailto:zhouxiaobin9c@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+      <div>
+        
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=29378196&auto=1&height=66"></iframe>
+        
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+<div>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<span id="busuanzi_container_site_pv" style='display:none'>
+    本站总访问量 <span id="busuanzi_value_site_pv"></span> 次
+    <span class="post-meta-divider">|</span>
+</span>
+<span id="busuanzi_container_site_uv" style='display:none'>
+    有<span id="busuanzi_value_site_uv"></span>人看过我的博客啦
+</span>
+</div>
+<div class="copyright">
+  
+  &copy; 2017 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hson zhou</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">87k</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,0' opacity='0.5' zIndex='-1' count='150' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
+
